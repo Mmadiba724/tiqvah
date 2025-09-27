@@ -1,87 +1,273 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import {
-	Github,
-	Twitter,
-	Facebook,
-	Linkedin,
-	Instagram,
-	Menu,
-	X,
+    Github,
+    Twitter,
+    Facebook,
+    Linkedin,
+    Instagram,
+    Menu,
+    X,
 } from "lucide-react";
 import { SocialButton } from "./iconBtn.jsx";
+import NavDropdown from "./NavDropdown.jsx";
 
 const Navbar = () => {
-	const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
 
-	return (
-		<nav className="bg-gray-100 px-4 py-4 md:py-6 shadow-md">
-			<div className="flex justify-between items-center">
-				{/* Logo */}
-				<h1 className="text-2xl font-bold text-purple-700">Tiqvah Solutions</h1>
+    const GmcItems = [
+        {
+            label: "Youth SRHR & Menstrual Health Clubs",
+            to: "/gmc#youth-clubs",
+        },
+        {
+            label: "Leadership & Entrepreneurship for Women/PWDs",
+            to: "/gmc#leadership",
+        },
+        { label: "Mental Health & Wellbeing", to: "/gmc#mental-health" },
+        { label: "Train-the-Trainer Programs", to: "/gmc#training" },
+    ];
 
+    const ServiceItems = [
+        { label: "Enterprise & Market Research", to: "/services#research" },
+        { label: "Capacity Building & Training", to: "/services#training" },
+        { label: "Enterprise Development", to: "/services#development" },
+        { label: "Consultancy Solutions", to: "/services#consultancy" },
+    ];
 
-				{/* Desktop Menu */}
-				<ul className="hidden md:flex space-x-6 font-medium">
-					<li className="cursor-pointer">Home</li>
-					<li className="cursor-pointer">About Us</li>
-					<li className="cursor-pointer">Services</li>
-					<li className="cursor-pointer">The GMC (CSR Arm)</li>
-					<li className="cursor-pointer">Our Impact</li>
-					<li className="cursor-pointer">Partner With Us</li>
-					<li className="cursor-pointer">Contact Us</li>
-				</ul>
+    return (
+        <nav className="bg-gray-100 px-4 py-4 md:py-6 shadow-md">
+            <div className="flex justify-between items-center">
+                {/* Logo */}
+                <Link
+                    to="/"
+                    className="text-2xl font-bold text-purple-700 hover:text-purple-600 transition-colors"
+                >
+                    Tiqvah Solutions
+                </Link>
 
-				{/* Desktop Socials + Button */}
-				<div className="hidden md:flex items-center space-x-4">
-					<SocialButton href="https://github.com" label="GitHub" Icon={Github} />
-					<SocialButton href="https://twitter.com" label="X" Icon={Twitter} />
-					<SocialButton href="https://facebook.com" label="Facebook" Icon={Facebook} />
-					<SocialButton href="https://linkedin.com" label="LinkedIn" Icon={Linkedin} />
-					<SocialButton href="https://instagram.com" label="Instagram" Icon={Instagram} />
-					<button className="bg-purple-700 text-white px-4 py-2 rounded-lg hover:bg-purple-600 transition-all">
-						Donate Now
-					</button>
-				</div>
+                {/* Desktop Menu */}
+                <ul className="hidden lg:flex space-x-6 font-medium text-sm">
+                    <li>
+                        <Link
+                            to="/"
+                            className="cursor-pointer hover:text-purple-700 transition-colors"
+                        >
+                            Home
+                        </Link>
+                    </li>
 
-				{/* Mobile Hamburger */}
-				<button
-					className="md:hidden p-2"
-					onClick={() => setIsOpen(!isOpen)}
-				>
-					{isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-				</button>
-			</div>
+                    <NavDropdown
+                        title={
+                            <div className="flex items-center space-x-2">
+                                <Link
+                                    to="/services"
+                                    className="hover:text-purple-700 transition-colors"
+                                >
+                                    Services
+                                </Link>
+                            </div>
+                        }
+                        items={ServiceItems}
+                    />
+                    <NavDropdown
+                        title={
+                            <div className="flex items-center space-x-2">
+                                <Link
+                                    to="/gmc"
+                                    className="hover:text-purple-700 transition-colors"
+                                >
+                                    The GMC (CSR Arm)
+                                </Link>
+                            </div>
+                        }
+                        items={GmcItems}
+                    />
+                    {/* <li>
+                        <Link
+                            to="/about"
+                            className="cursor-pointer hover:text-purple-700 transition-colors"
+                        >
+                            Our Impact
+                        </Link>
+                    </li> */}
+                    {/* <li>
+                        <Link
+                            to="/about"
+                            className="cursor-pointer hover:text-purple-700 transition-colors"
+                        >
+                            Partner With Us
+                        </Link>
+                    </li> */}
+                    <li>
+                        <Link
+                            to="/about"
+                            className="cursor-pointer hover:text-purple-700 transition-colors"
+                        >
+                            About Us
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            to="/contact"
+                            className="cursor-pointer hover:text-purple-700 transition-colors"
+                        >
+                            Contact Us
+                        </Link>
+                    </li>
+                </ul>
 
-			{/* Mobile Dropdown Menu */}
-			{isOpen && (
-				<div className="md:hidden mt-4 space-y-4">
-					<ul className="flex flex-col space-y-3 font-medium">
-						<li className="cursor-pointer">Home</li>
-						<li className="cursor-pointer">About Us</li>
-						<li className="cursor-pointer">Services</li>
-						<li className="cursor-pointer">The GMC (CSR Arm)</li>
-						<li className="cursor-pointer">Our Impact</li>
-						<li className="cursor-pointer">Partner With Us</li>
-						<li className="cursor-pointer">Contact Us</li>
-					</ul>
+                {/* Desktop Socials + Button */}
+                <div className="hidden lg:flex items-center space-x-4 text-sm">
+                    <SocialButton
+                        href="https://github.com"
+                        label="GitHub"
+                        Icon={Github}
+                    />
+                    <SocialButton
+                        href="https://twitter.com"
+                        label="X"
+                        Icon={Twitter}
+                    />
+                    <SocialButton
+                        href="https://facebook.com"
+                        label="Facebook"
+                        Icon={Facebook}
+                    />
+                    <SocialButton
+                        href="https://linkedin.com"
+                        label="LinkedIn"
+                        Icon={Linkedin}
+                    />
+                    <SocialButton
+                        href="https://instagram.com"
+                        label="Instagram"
+                        Icon={Instagram}
+                    />
+                    <button className="bg-purple-700 text-white px-4 py-2 rounded-lg hover:bg-purple-600 transition-all">
+                        Donate Now
+                    </button>
+                </div>
 
-					{/* Socials */}
-					<div className="flex space-x-3 pt-4">
-						<SocialButton href="https://github.com" label="GitHub" Icon={Github} />
-						<SocialButton href="https://twitter.com" label="X" Icon={Twitter} />
-						<SocialButton href="https://facebook.com" label="Facebook" Icon={Facebook} />
-						<SocialButton href="https://linkedin.com" label="LinkedIn" Icon={Linkedin} />
-						<SocialButton href="https://instagram.com" label="Instagram" Icon={Instagram} />
-					</div>
+                {/* Mobile Hamburger */}
+                <button
+                    className="lg:hidden p-2"
+                    onClick={() => setIsOpen(!isOpen)}
+                >
+                    {isOpen ? (
+                        <X className="w-6 h-6" />
+                    ) : (
+                        <Menu className="w-6 h-6" />
+                    )}
+                </button>
+            </div>
 
-					{/* Donate Button */}
-					<button className="w-full bg-purple-700 text-white py-3 rounded-lg hover:bg-purple-600 transition-all">
-						Donate Now
-					</button>
-				</div>
-			)}
-		</nav>
-	);
+            {/* Mobile Dropdown Menu */}
+            {isOpen && (
+                <div className="lg:hidden flex flex-col items-center justify-center mt-4 space-y-4">
+                    <ul className="flex flex-col space-y-3 font-medium text-sm">
+                        <li>
+                            <Link
+                                to="/"
+                                className="cursor-pointer hover:text-purple-700 transition-colors"
+                                onClick={() => setIsOpen(false)}
+                            >
+                                Home
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                to="/about"
+                                className="cursor-pointer hover:text-purple-700 transition-colors"
+                                onClick={() => setIsOpen(false)}
+                            >
+                                About Us
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                to="/services"
+                                className="cursor-pointer hover:text-purple-700 transition-colors"
+                                onClick={() => setIsOpen(false)}
+                            >
+                                Services
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                to="/gmc"
+                                className="cursor-pointer hover:text-purple-700 transition-colors"
+                                onClick={() => setIsOpen(false)}
+                            >
+                                The GMC (CSR Arm)
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                to="/about"
+                                className="cursor-pointer hover:text-purple-700 transition-colors"
+                                onClick={() => setIsOpen(false)}
+                            >
+                                Our Impact
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                to="/about"
+                                className="cursor-pointer hover:text-purple-700 transition-colors"
+                                onClick={() => setIsOpen(false)}
+                            >
+                                Partner With Us
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                to="/contact"
+                                className="cursor-pointer hover:text-purple-700 transition-colors"
+                                onClick={() => setIsOpen(false)}
+                            >
+                                Contact Us
+                            </Link>
+                        </li>
+                    </ul>
+
+                    {/* Socials */}
+                    <div className="flex space-x-3 pt-4 text-sm text-shadow-2xs ">
+                        <SocialButton
+                            href="https://github.com"
+                            label="GitHub"
+                            Icon={Github}
+                        />
+                        <SocialButton
+                            href="https://twitter.com"
+                            label="X"
+                            Icon={Twitter}
+                        />
+                        <SocialButton
+                            href="https://facebook.com"
+                            label="Facebook"
+                            Icon={Facebook}
+                        />
+                        <SocialButton
+                            href="https://linkedin.com"
+                            label="LinkedIn"
+                            Icon={Linkedin}
+                        />
+                        <SocialButton
+                            href="https://instagram.com"
+                            label="Instagram"
+                            Icon={Instagram}
+                        />
+                    </div>
+
+                    {/* Donate Button */}
+                    <button className="w-full bg-purple-700 text-white py-3 rounded-lg hover:bg-purple-600 transition-all">
+                        Donate Now
+                    </button>
+                </div>
+            )}
+        </nav>
+    );
 };
 
 export default Navbar;
