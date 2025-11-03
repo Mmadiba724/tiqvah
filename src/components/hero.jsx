@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react'
-import { ChevronDown, Target, Users, Lightbulb, TrendingUp, BookOpen, Award, Heart, Rocket, ChevronLeft, ChevronRight } from 'lucide-react'
+import { ChevronDown, Users, TrendingUp, BookOpen, Award, Heart, Rocket, ChevronLeft, ChevronRight } from 'lucide-react'
 import heroImg from '../assets/images/hero.jpeg'
+import slide1 from '/public/slide1.jpeg'
+import slide2 from '/public/slide2.jpeg'
+import slide3 from '/public/slide3.jpeg'
+import slide4 from '/public/slide4.jpeg'
+import slide5 from '/public/slide5.jpeg'
+import tiqvahVideo from '/public/tiqvah-video.mp4'
+
 
 const Hero = () => {
 	const [currentSlide, setCurrentSlide] = useState(0)
 	const slides = [
-		'/slide1.jpeg',
-		'/slide2.jpeg',
-		'/slide3.jpeg',
-		'/slide4.jpeg',
-		'/slide5.jpeg'
+		slide1, slide2,slide3,slide4,slide5
 	]
 
 	// Auto-advance slides
@@ -215,7 +218,7 @@ const Hero = () => {
 							preload="metadata"
 							poster="/animelogo.png"
 						>
-							<source src="/tiqvah-video.mp4" type="video/mp4" />
+							<source src={tiqvahVideo} type="video/mp4" />
 							Your browser does not support the video tag.
 						</video>
 					</div>
