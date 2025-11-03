@@ -20,7 +20,7 @@ const About = () => {
 						</div>
 						<div>
 							<img 
-								src="/we.jpeg" 
+								src="/src/assets/images/we.jpeg" 
 								alt="Tiqvah Solutions Team" 
 								className="w-full h-auto border-8 border-purple-700 shadow-2xl"
 							/>

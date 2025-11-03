@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { ChevronDown, Users, TrendingUp, BookOpen, Award, Heart, Rocket, ChevronLeft, ChevronRight } from 'lucide-react'
 import heroImg from '../assets/images/hero.jpeg'
-import slide1 from '/public/slide1.jpeg'
-import slide2 from '/public/slide2.jpeg'
-import slide3 from '/public/slide3.jpeg'
-import slide4 from '/public/slide4.jpeg'
-import slide5 from '/public/slide5.jpeg'
-import tiqvahVideo from '/public/tiqvah-video.mp4'
+import slide1 from '../assets/images/slide1.jpeg'
+import slide2 from '../assets/images/slide2.jpeg'
+import slide3 from '../assets/images/slide3.jpeg'
+import slide4 from '../assets/images/slide4.jpeg'
+import slide5 from '../assets/images/slide5.jpeg'
+import tiqvahVideo from '../assets/images/tiqvah-video.mp4'
 
 
 const Hero = () => {
@@ -216,7 +216,7 @@ const Hero = () => {
 							className="w-full h-full object-cover"
 							controls
 							preload="metadata"
-							poster="/animelogo.png"
+							poster="/src/assets/images/animelogo.png"
 						>
 							<source src={tiqvahVideo} type="video/mp4" />
 							Your browser does not support the video tag.
