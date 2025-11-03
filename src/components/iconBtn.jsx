@@ -9,7 +9,7 @@ export function SocialButton({ href, label, Icon }) {
 				rel="noopener noreferrer"
 				className="flex items-center justify-center"
 			>
-				<Icon className="w-5 h-5 hover:scale-125 duration-200 hover:stroke-blue-500" />
+				<Icon className="w-5 h-5 transition-all duration-200 hover:scale-110 text-gray-700 hover:text-amber-500" />
 			</a>
 
 			<span

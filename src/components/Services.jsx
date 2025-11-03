@@ -42,32 +42,37 @@ const Services = () => {
 	];
 
 	return (
-		<section className="bg-gray-50 text-gray-800">
+		<section className="bg-white text-gray-800">
 			{/* Hero */}
-			<div className="bg-gradient-to-r from-blue-900 via-blue-700 to-blue-500 text-white py-20 px-6 text-center">
-				<h1 className="text-4xl md:text-5xl font-bold mb-4">Our Services</h1>
-				<p className="text-xl font-light">
-					Empowering growth through technology and tradition
-				</p>
+			<div className="bg-gradient-to-r from-purple-700 to-amber-600 text-white py-32 px-6">
+				<div className="max-w-5xl mx-auto">
+					<h1 className="text-5xl md:text-7xl font-bold mb-6">Our Services</h1>
+					<p className="text-2xl font-light max-w-3xl">
+						Empowering growth through technology and tradition
+					</p>
+				</div>
 			</div>
 
 			{/* Services List */}
-			<div className="max-w-6xl mx-auto py-16 px-6 space-y-16">
+			<div className="max-w-5xl mx-auto py-32 px-6 space-y-20">
 				{services.map((service, index) => (
 					<div
 						key={index}
-						className="bg-white shadow-md rounded-2xl p-8 hover:shadow-lg transition"
+						className="border-b border-gray-200 pb-20 last:border-0"
 					>
-						<h2 className="text-2xl font-bold text-blue-800 mb-4">
+						<h2 className="text-4xl md:text-5xl font-bold text-purple-700 mb-8">
 							{service.title}
 						</h2>
-						<p className="text-lg leading-relaxed mb-6">{service.description}</p>
-						<h3 className="text-xl font-semibold text-gray-700 mb-3">
-							Key Offerings:
+						<p className="text-xl text-gray-700 leading-relaxed mb-8">{service.description}</p>
+						<h3 className="text-2xl font-bold text-amber-600 mb-6">
+							Key Offerings
 						</h3>
-						<ul className="list-disc pl-6 space-y-2 text-gray-700">
+						<ul className="space-y-4 text-lg text-gray-700">
 							{service.offerings.map((item, i) => (
-								<li key={i}>{item}</li>
+								<li key={i} className="flex items-start">
+									<span className="text-purple-700 mr-3 text-2xl">•</span>
+									<span>{item}</span>
+								</li>
 							))}
 						</ul>
 					</div>
