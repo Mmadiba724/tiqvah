@@ -57,6 +57,15 @@ const Navbar = () => {
                         </Link>
                     </li>
 
+                     <li className="relative flex items-center">
+                        <Link
+                            to="/about"
+                            className="nav-link cursor-pointer hover:text-purple-700 transition-colors py-2"
+                        >
+                            About Us
+                        </Link>
+                    </li>
+
                     <li className="relative flex items-center">
                         <NavDropdown
                             title={
@@ -103,14 +112,6 @@ const Navbar = () => {
                             Partner With Us
                         </Link>
                     </li> */}
-                    <li className="relative flex items-center">
-                        <Link
-                            to="/about"
-                            className="nav-link cursor-pointer hover:text-purple-700 transition-colors py-2"
-                        >
-                            About Us
-                        </Link>
-                    </li>
                     <li className="relative flex items-center">
                         <Link
                             to="/contact"
