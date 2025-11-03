@@ -47,70 +47,74 @@ const Navbar = () => {
                 </Link>
 
                 {/* Desktop Menu */}
-                <ul className="hidden lg:flex space-x-6 font-medium text-sm">
-                    <li>
+                <ul className="hidden lg:flex space-x-6 font-semibold text-sm items-center">
+                    <li className="relative flex items-center">
                         <Link
                             to="/"
-                            className="cursor-pointer hover:text-purple-700 transition-colors"
+                            className="nav-link cursor-pointer hover:text-purple-700 transition-colors py-2"
                         >
                             Home
                         </Link>
                     </li>
 
-                    <NavDropdown
-                        title={
-                            <div className="flex items-center space-x-2">
-                                <Link
-                                    to="/services"
-                                    className="hover:text-purple-700 transition-colors"
-                                >
-                                    Services
-                                </Link>
-                            </div>
-                        }
-                        items={ServiceItems}
-                    />
-                    <NavDropdown
-                        title={
-                            <div className="flex items-center space-x-2">
-                                <Link
-                                    to="/gmc"
-                                    className="hover:text-purple-700 transition-colors"
-                                >
-                                    The GMC (CSR Arm)
-                                </Link>
-                            </div>
-                        }
-                        items={GmcItems}
-                    />
-                    {/* <li>
+                    <li className="relative flex items-center">
+                        <NavDropdown
+                            title={
+                                <div className="flex items-center space-x-1">
+                                    <Link
+                                        to="/services"
+                                        className="hover:text-purple-700 transition-colors"
+                                    >
+                                        Services
+                                    </Link>
+                                </div>
+                            }
+                            items={ServiceItems}
+                        />
+                    </li>
+                    <li className="relative flex items-center">
+                        <NavDropdown
+                            title={
+                                <div className="flex items-center space-x-1">
+                                    <Link
+                                        to="/gmc"
+                                        className="hover:text-purple-700 transition-colors"
+                                    >
+                                        The GMC (CSR Arm)
+                                    </Link>
+                                </div>
+                            }
+                            items={GmcItems}
+                        />
+                    </li>
+                    {/* <li className="relative flex items-center">
                         <Link
                             to="/about"
-                            className="cursor-pointer hover:text-purple-700 transition-colors"
+                            className="nav-link cursor-pointer hover:text-purple-700 transition-colors py-2"
                         >
                             Our Impact
                         </Link>
                     </li> */}
-                    {/* <li>
+                    {/* <li className="relative flex items-center">
                         <Link
                             to="/about"
-                            className="cursor-pointer hover:text-purple-700 transition-colors"
+                            className="nav-link cursor-pointer hover:text-purple-700 transition-colors py-2"
                         >
                             Partner With Us
                         </Link>
                     </li> */}
-                    <li>
+                    <li className="relative flex items-center">
                         <Link
                             to="/about"
-                            className="cursor-pointer hover:text-purple-700 transition-colors"
+                            className="nav-link cursor-pointer hover:text-purple-700 transition-colors py-2"
                         >
                             About Us
                         </Link>
                     </li>
-                    <li>
+                    <li className="relative flex items-center">
                         <Link
                             to="/contact"
-                            className="cursor-pointer hover:text-purple-700 transition-colors"
+                            className="nav-link cursor-pointer hover:text-purple-700 transition-colors py-2"
                         >
                             Contact Us
                         </Link>
