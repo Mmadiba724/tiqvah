@@ -1,138 +1,302 @@
 import React from "react"
+import { Link } from "react-router-dom"
 
 const About = () => {
 	return (
-		<section className="bg-gray-50 text-gray-800">
+		<section className="bg-white text-gray-800">
 			{/* Hero Section */}
-			<div className="bg-gradient-to-r from-blue-900 via-blue-700 to-blue-500 text-white py-20 px-6 text-center">
-				<h1 className="text-4xl md:text-5xl font-bold mb-4">About Us</h1>
-				<p className="text-xl font-light max-w-3xl mx-auto">
-					Empowering Communities, Enabling Growth, Embracing Technology
-				</p>
+			<div className="py-32 px-6">
+				<div className="max-w-7xl mx-auto">
+					<div className="grid md:grid-cols-2 gap-12 items-center mb-16">
+						<div>
+							<h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-8">
+								Our Dream is Global Learning Transformation
+							</h1>
+							<p className="text-xl md:text-2xl text-gray-600 leading-relaxed">
+								Tiqvah Solutions was founded by passionate changemakers dedicated to empowering communities and driving transformation. 
+								We create digital havens of knowledge accessible to all, building a global community of learners connected by the desire 
+								to <span className="text-purple-700 font-semibold">explore, learn, and grow</span>.
+							</p>
+						</div>
+						<div>
+							<img 
+								src="/we.jpeg" 
+								alt="Tiqvah Solutions Team" 
+								className="w-full h-auto border-8 border-purple-700 shadow-2xl"
+							/>
+						</div>
+					</div>
+
+					{/* Stats - Minimalist */}
+					<div className="grid grid-cols-2 md:grid-cols-4 gap-12 pt-16 border-t border-gray-200">
+						<div>
+							<div className="text-5xl md:text-6xl font-bold text-purple-700 mb-2">3.5</div>
+							<div className="text-gray-600 uppercase tracking-wider text-sm">Years Experience</div>
+						</div>
+						<div>
+							<div className="text-5xl md:text-6xl font-bold text-purple-700 mb-2">23</div>
+							<div className="text-gray-600 uppercase tracking-wider text-sm">Projects</div>
+						</div>
+						<div>
+							<div className="text-5xl md:text-6xl font-bold text-purple-700 mb-2">830+</div>
+							<div className="text-gray-600 uppercase tracking-wider text-sm">Reviews</div>
+						</div>
+						<div>
+							<div className="text-5xl md:text-6xl font-bold text-purple-700 mb-2">100K</div>
+							<div className="text-gray-600 uppercase tracking-wider text-sm">Students</div>
+						</div>
+					</div>
+				</div>
 			</div>
 
-			<div className="max-w-6xl mx-auto py-16 px-6 space-y-20">
-				{/* Section 1: Story, Values, Vision */}
-				<div>
-					<h2 className="text-3xl font-bold text-blue-800 mb-6">
-						TSL’s Full Story, Values, and Vision
+			{/* Who We Are Section */}
+			<div className="py-32 px-6 bg-gray-50">
+				<div className="max-w-4xl mx-auto">
+					<h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-12">
+						Who We Are
 					</h2>
-					<p className="text-lg leading-relaxed mb-4">
-						Tiqvah Solutions Limited (TSL) is a forward-thinking social
-						enterprise that integrates innovative technology solutions alongside
-						traditional approaches to community engagement. We offer a
-						comprehensive suite of services, including capacity building,
-						research, enterprise development, and consultancy, while maintaining
-						a strong focus on digital transformation.
-					</p>
-					<p className="text-lg leading-relaxed mb-4">
-						Through these services, we aim to support sustainable development
-						and drive lasting impact in underserved communities. At TSL, we
-						believe that digital inclusion and community-driven change go hand
-						in hand. Our vision is to create a future where every individual has
-						access to the resources and skills they need to succeed, regardless
-						of geographical location or background.
-					</p>
-					<p className="text-lg leading-relaxed">
-						Our Corporate Social Responsibility (CSR) arm,{" "}
-						<span className="font-semibold">The GMC (Great Minds Corp)</span>,
-						is dedicated to empowering marginalized groups, particularly youth,
-						women, and persons with disabilities (PWDs). This reflects our
-						values of inclusivity, empowerment, and sustainable impact.
-					</p>
+					
+					<div className="space-y-8 text-lg md:text-xl text-gray-700 leading-relaxed">
+						<p>
+							<span className="text-2xl font-bold text-purple-700">Tiqvah Solutions Limited</span> is a forward-thinking social enterprise 
+							that integrates innovative technology solutions alongside traditional approaches to community engagement.
+						</p>
+						<p>
+							We offer <span className="font-semibold text-gray-900">capacity building, research, enterprise development, and consultancy</span> 
+							while maintaining a strong focus on <span className="italic text-purple-700">digital transformation</span>.
+						</p>
+						<p>
+							Our Corporate Social Responsibility arm, <span className="text-2xl font-bold text-amber-600">The GMC</span>, is dedicated to 
+							empowering marginalized groups—particularly youth, women, and persons with disabilities.
+						</p>
+						<p className="text-2xl font-light text-gray-900 pt-8">
+							We believe that digital inclusion and community-driven change go hand in hand.
+						</p>
+					</div>
 				</div>
+			</div>
 
-				{/* Section 2: Our Approach */}
-				<div>
-					<h2 className="text-3xl font-bold text-blue-800 mb-6">Our Approach</h2>
-					<p className="text-lg leading-relaxed mb-6">
-            <span className="font-semibold">
-              Integrated, Data-Driven, and Technology-Focused
-            </span>
-						<br />
-						At TSL, we believe that the future of development lies in
-						integrating technology with traditional engagement methods. Whether
-						it’s through in-person workshops, mobile apps, or cloud platforms,
-						we ensure that our services combine the best of both worlds. By
-						leveraging data-driven insights and cutting-edge technologies, we
-						create solutions that are scalable, sustainable, and
-						community-centered.
-					</p>
-					<ul className="list-disc list-inside space-y-2 text-lg">
-						<li>
-							<span className="font-semibold">Tech-Enabled Solutions:</span> We
-							incorporate digital tools to expand our reach, improve efficiency,
-							and enhance the impact of our programs.
-						</li>
-						<li>
-							<span className="font-semibold">Scalable & Sustainable:</span> We
-							design train-the-trainer models that empower local leaders to
-							continue the work independently, ensuring long-term success.
-						</li>
-					</ul>
+			{/* Our Approach Section */}
+			<div className="py-32 px-6">
+				<div className="max-w-4xl mx-auto">
+					<h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-12">
+						Our Approach
+					</h2>
+					
+					<div className="space-y-8 text-lg md:text-xl text-gray-700 leading-relaxed">
+						<p className="text-3xl font-light text-purple-700">
+							Integrated. Data-Driven. Technology-Focused.
+						</p>
+						
+						<p>
+							At TSL, we believe the future of development lies in integrating technology with traditional engagement methods. 
+							Whether through in-person workshops, mobile apps, or cloud platforms, we combine the best of both worlds.
+						</p>
+						
+						<p>
+							By leveraging <span className="font-semibold text-gray-900">data-driven insights</span> and 
+							<span className="font-semibold text-gray-900"> cutting-edge technologies</span>, we create solutions that are 
+							scalable, sustainable, and community-centered.
+						</p>
+
+						<div className="grid md:grid-cols-2 gap-16 pt-12 mt-12 border-t border-gray-200">
+							<div>
+								<h3 className="text-2xl font-bold text-purple-700 mb-4">Tech-Enabled Solutions</h3>
+								<p className="text-gray-700">
+									We incorporate digital tools to expand our reach, improve efficiency, and enhance program impact.
+								</p>
+							</div>
+							<div>
+								<h3 className="text-2xl font-bold text-amber-600 mb-4">Scalable & Sustainable</h3>
+								<p className="text-gray-700">
+									We design train-the-trainer models that empower local leaders to continue the work independently.
+								</p>
+							</div>
+						</div>
+					</div>
 				</div>
+			</div>
 
-				{/* Section 3: Our Values */}
-				<div>
-					<h2 className="text-3xl font-bold text-blue-800 mb-10">Our Values</h2>
-					<div className="grid gap-6 md:grid-cols-2">
-						<div className="p-6 bg-white shadow-md rounded-xl">
-							<h3 className="text-xl font-semibold text-blue-700 mb-3">
-								Integrity
-							</h3>
-							<p className="text-lg leading-relaxed">
-								We operate with transparency and uphold the highest ethical
-								standards in all our engagements.
+			{/* Core Values Section */}
+			<div className="py-32 px-6 bg-gray-50">
+				<div className="max-w-6xl mx-auto">
+					<h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-20 text-center">
+						Core Values
+					</h2>
+					
+					<div className="grid md:grid-cols-2 gap-8">
+						<div className="bg-white p-10 border-l-8 border-purple-700 shadow-lg hover:shadow-xl transition-shadow">
+							<h3 className="text-4xl font-bold text-purple-700 mb-6">Integrity</h3>
+							<p className="text-xl text-gray-700 leading-relaxed">
+								We operate with transparency and uphold the highest ethical standards in all our engagements. 
+								Trust is the foundation of our relationships with communities, partners, and stakeholders.
 							</p>
 						</div>
-						<div className="p-6 bg-white shadow-md rounded-xl">
-							<h3 className="text-xl font-semibold text-blue-700 mb-3">
-								Innovation
-							</h3>
-							<p className="text-lg leading-relaxed">
-								We embrace new ideas, technologies, and approaches that drive
-								positive social change.
+						
+						<div className="bg-white p-10 border-l-8 border-amber-600 shadow-lg hover:shadow-xl transition-shadow">
+							<h3 className="text-4xl font-bold text-amber-600 mb-6">Innovation</h3>
+							<p className="text-xl text-gray-700 leading-relaxed">
+								We embrace new ideas, technologies, and approaches that drive positive social change. 
+								Innovation is at the heart of our solutions, enabling us to create meaningful impact in diverse communities.
 							</p>
 						</div>
-						<div className="p-6 bg-white shadow-md rounded-xl">
-							<h3 className="text-xl font-semibold text-blue-700 mb-3">
-								Empowerment
-							</h3>
-							<p className="text-lg leading-relaxed">
-								We believe in the potential of every individual and aim to equip
-								them with the tools they need to succeed.
+						
+						<div className="bg-white p-10 border-l-8 border-purple-700 shadow-lg hover:shadow-xl transition-shadow">
+							<h3 className="text-4xl font-bold text-purple-700 mb-6">Empowerment</h3>
+							<p className="text-xl text-gray-700 leading-relaxed">
+								We believe in the potential of every individual and aim to equip them with the tools they need to succeed. 
+								Empowerment drives our mission to create inclusive opportunities for marginalized groups.
 							</p>
 						</div>
-						<div className="p-6 bg-white shadow-md rounded-xl">
-							<h3 className="text-xl font-semibold text-blue-700 mb-3">
-								Sustainability
-							</h3>
-							<p className="text-lg leading-relaxed">
-								We strive to create lasting impact through community-driven and
-								self-sustaining programs.
+						
+						<div className="bg-white p-10 border-l-8 border-amber-600 shadow-lg hover:shadow-xl transition-shadow">
+							<h3 className="text-4xl font-bold text-amber-600 mb-6">Sustainability</h3>
+							<p className="text-xl text-gray-700 leading-relaxed">
+								We strive to create lasting impact through community-driven and self-sustaining programs. 
+								Our approach ensures that the communities we serve can continue to thrive long after our initial engagement.
 							</p>
 						</div>
 					</div>
 				</div>
+			</div>
 
-				{/* Section 4: Tech + Traditional Methods */}
-				<div>
-					<h2 className="text-3xl font-bold text-blue-800 mb-6">
-						Integration of Technology and Traditional Methods
+			{/* Partnership Section */}
+			<div className="py-32 px-6">
+				<div className="max-w-4xl mx-auto">
+					<h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-12">
+						Partner with Us
 					</h2>
-					<p className="text-lg leading-relaxed mb-4">
-						TSL bridges the gap between tradition and modernity by integrating
-						digital innovations with proven community engagement methods. This
-						hybrid approach ensures that our solutions are inclusive, practical,
-						and adaptable to diverse contexts.
+					
+					<p className="text-2xl font-light text-gray-700 leading-relaxed mb-16">
+						We believe in the power of collaboration to create lasting change. We work with corporate partners, CBOs, NGOs, 
+						and governments to co-create solutions that bring both social impact and economic growth.
 					</p>
-					<p className="text-lg leading-relaxed">
-						By combining digital platforms with meaningful face-to-face
-						interactions, we strengthen trust and foster sustainable change in
-						the communities we serve.
-					</p>
+					
+					<div className="grid md:grid-cols-2 gap-x-16 gap-y-12">
+						<div>
+							<h3 className="text-2xl font-bold text-purple-700 mb-4">Bespoke Solutions</h3>
+							<p className="text-lg text-gray-600">
+								Tailored services that align with your goals and address your specific challenges.
+							</p>
+						</div>
+						<div>
+							<h3 className="text-2xl font-bold text-purple-700 mb-4">Digital Transformation</h3>
+							<p className="text-lg text-gray-600">
+								We help organizations adopt cutting-edge technologies that improve their operations and impact.
+							</p>
+						</div>
+						<div>
+							<h3 className="text-2xl font-bold text-amber-600 mb-4">Social Impact</h3>
+							<p className="text-lg text-gray-600">
+								Your support through CSR initiatives will help drive meaningful change in marginalized communities.
+							</p>
+						</div>
+						<div>
+							<h3 className="text-2xl font-bold text-amber-600 mb-4">Collaborative Approach</h3>
+							<p className="text-lg text-gray-600">
+								We believe in working together to maximize both social and financial returns.
+							</p>
+						</div>
+					</div>
 				</div>
 			</div>
+
+			{/* Why Donate Section */}
+			<div className="py-32 px-6 bg-gray-50">
+				<div className="max-w-5xl mx-auto">
+					<h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-12">
+						Why Donate
+					</h2>
+					
+					<p className="text-2xl font-light text-gray-700 leading-relaxed mb-20">
+						Your donation directly transforms lives in marginalized communities. Every contribution helps us empower 
+						youth, women, and persons with disabilities through education, technology, and sustainable development programs.
+					</p>
+
+					<div className="space-y-16 mb-20">
+						<div className="border-b border-gray-200 pb-16">
+							<h3 className="text-4xl font-bold text-purple-700 mb-6">Empower Communities</h3>
+							<p className="text-xl text-gray-700 leading-relaxed max-w-3xl mb-6">
+								Your donation provides training, mentorship, and digital tools to underserved communities, helping them build 
+								sustainable livelihoods and break the cycle of poverty.
+							</p>
+							<p className="text-2xl font-semibold text-purple-700">
+								Over 5,000+ beneficiaries reached
+							</p>
+						</div>
+						
+						<div className="border-b border-gray-200 pb-16">
+							<h3 className="text-4xl font-bold text-amber-600 mb-6">Support Mental Health</h3>
+							<p className="text-xl text-gray-700 leading-relaxed max-w-3xl mb-6">
+								Donations fund our mental health and wellbeing programs, providing online counseling and community-based support 
+								to those who need it most.
+							</p>
+							<p className="text-2xl font-semibold text-amber-600">
+								Mental health services for all
+							</p>
+						</div>
+						
+						<div>
+							<h3 className="text-4xl font-bold text-purple-700 mb-6">Drive Innovation</h3>
+							<p className="text-xl text-gray-700 leading-relaxed max-w-3xl mb-6">
+								Your support enables us to develop cutting-edge digital solutions, mobile apps, and technology platforms that 
+								make education and resources accessible to all.
+							</p>
+							<p className="text-2xl font-semibold text-purple-700">
+								Technology for social good
+							</p>
+						</div>
+					</div>
+
+					{/* Impact Stats - Minimalist */}
+					<div className="bg-gradient-to-r from-purple-700 to-amber-600 py-20 px-8 text-white">
+						<h3 className="text-4xl md:text-5xl font-bold mb-16 text-center">Your Impact in Numbers</h3>
+						
+						<div className="grid grid-cols-2 md:grid-cols-4 gap-12 max-w-4xl mx-auto">
+							<div className="text-center">
+								<div className="text-6xl font-bold mb-2">23+</div>
+								<div className="text-lg uppercase tracking-wider opacity-90">Projects</div>
+							</div>
+							<div className="text-center">
+								<div className="text-6xl font-bold mb-2">5,000+</div>
+								<div className="text-lg uppercase tracking-wider opacity-90">Lives Impacted</div>
+							</div>
+							<div className="text-center">
+								<div className="text-6xl font-bold mb-2">100+</div>
+								<div className="text-lg uppercase tracking-wider opacity-90">Youth Trained</div>
+							</div>
+							<div className="text-center">
+								<div className="text-6xl font-bold mb-2">50+</div>
+								<div className="text-lg uppercase tracking-wider opacity-90">Women Empowered</div>
+							</div>
+						</div>
+					</div>
+
+					{/* CTA */}
+					<div className="mt-20 text-center">
+						<h3 className="text-4xl font-bold text-gray-900 mb-8">Ready to Make a Difference?</h3>
+						<p className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto">
+							Every donation helps us continue our mission of empowering communities through innovation, 
+							education, and sustainable development.
+						</p>
+						<div className="flex flex-col sm:flex-row gap-6 justify-center">
+							<Link 
+								to="/contact" 
+								className="inline-block bg-purple-700 text-white px-12 py-5 text-lg font-semibold hover:bg-purple-600 transition-colors"
+							>
+								Donate Now
+							</Link>
+							<Link 
+								to="/gmc" 
+								className="inline-block bg-amber-600 text-white px-12 py-5 text-lg font-semibold hover:bg-amber-500 transition-colors"
+							>
+								Learn About The GMC
+							</Link>
+						</div>
+					</div>
+				</div>
+			</div>
+
 		</section>
 	)
 }
