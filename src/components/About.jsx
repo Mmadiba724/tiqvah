@@ -1,5 +1,6 @@
 import React from "react"
 import { Link } from "react-router-dom"
+import we from '../assets/images/we.jpeg'
 
 const About = () => {
 	return (
@@ -20,7 +21,7 @@ const About = () => {
 						</div>
 						<div>
 							<img 
-								src="/src/assets/images/we.jpeg" 
+								src={we} 
 								alt="Tiqvah Solutions Team" 
 								className="w-full h-auto border-8 border-purple-700 shadow-2xl"
 							/>

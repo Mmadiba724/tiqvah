@@ -1,4 +1,5 @@
 import React from 'react'
+import { MapPin, Globe, Phone, Facebook, Twitter, Instagram, Youtube } from 'lucide-react'
 
 const Contact = () => {
 	return (
@@ -49,15 +50,15 @@ const Contact = () => {
 					</h2>
 					<div className="space-y-6 text-xl text-gray-700 mb-16">
 						<p className="flex items-start">
-							<span className="text-amber-600 mr-4 text-2xl">📍</span>
+							<MapPin className="text-amber-600 mr-4 text-2xl"/>
 							<span>Kampala, Uganda</span>
 						</p>
 						<p className="flex items-start">
-							<span className="text-amber-600 mr-4 text-2xl">📧</span>
+							<Globe className="text-amber-600 mr-4 text-2xl"/>
 							<span>info@tiqvahsolutions.com</span>
 						</p>
 						<p className="flex items-start">
-							<span className="text-amber-600 mr-4 text-2xl">📞</span>
+							<Phone className="text-amber-600 mr-4 text-2xl"/>
 							<span>+256 700 000 000</span>
 						</p>
 					</div>
@@ -68,27 +69,27 @@ const Contact = () => {
 					<div className="flex space-x-6">
 						<a
 							href="#"
-							className="w-14 h-14 bg-purple-700 text-white text-2xl flex items-center justify-center hover:bg-purple-600 transition-colors"
+							className="w-14 h-14 bg-blue-700 text-white text-2xl flex items-center justify-center hover:bg-purple-600 transition-colors"
 						>
-							🌐
+							<Facebook />
 						</a>
 						<a
 							href="#"
-							className="w-14 h-14 bg-purple-700 text-white text-2xl flex items-center justify-center hover:bg-purple-600 transition-colors"
+							className="w-14 h-14 bg-gray-900 text-white text-2xl flex items-center justify-center hover:bg-purple-600 transition-colors"
 						>
-							🐦
-						</a>
-						<a
-							href="#"
-							className="w-14 h-14 bg-amber-600 text-white text-2xl flex items-center justify-center hover:bg-amber-500 transition-colors"
-						>
-							📸
+							<Twitter />
 						</a>
 						<a
 							href="#"
 							className="w-14 h-14 bg-amber-600 text-white text-2xl flex items-center justify-center hover:bg-amber-500 transition-colors"
 						>
-							💼
+							<Instagram />
+						</a>
+						<a
+							href="#"
+							className="w-14 h-14 bg-red-600 text-white text-2xl flex items-center justify-center hover:bg-amber-500 transition-colors"
+						>
+							<Youtube />
 						</a>
 					</div>
 				</div>
