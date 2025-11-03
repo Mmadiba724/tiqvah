@@ -25,7 +25,7 @@ dist-ssr
 
 .codacy/
 .github/
-
+.vite/
 
 #Ignore vscode AI rules
 .github\instructions\codacy.instructions.md
