@@ -15,7 +15,7 @@ const Footer = () => {
 	return (
 		<footer className="bg-gray-900 text-gray-200">
 			{/* CTA Section - Get in touch */}
-			<div className="bg-gradient-to-r from-purple-700 via-purple-600 to-amber-600 py-8 px-6">
+			<div className="bg-purple-700 py-8 px-6">
 				<div className="container mx-auto flex flex-col md:flex-row items-center justify-between gap-6 max-w-6xl">
 					<div className="text-white">
 						<h3 className="text-2xl md:text-3xl font-bold mb-2">
@@ -26,7 +26,7 @@ const Footer = () => {
 						<input
 							type="email"
 							placeholder="Enter your email"
-							className="px-6 py-3 rounded-lg w-full md:w-80 text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-400"
+							className="px-6 py-3 rounded-lg w-full md:w-80 bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-400"
 						/>
 						<Link to="/contact">
 							<button className="bg-gray-900 text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors whitespace-nowrap">

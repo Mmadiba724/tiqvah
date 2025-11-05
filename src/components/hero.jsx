@@ -7,6 +7,8 @@ import slide3 from '../assets/images/slide3.jpeg'
 import slide4 from '../assets/images/slide4.jpeg'
 import slide5 from '../assets/images/slide5.jpeg'
 import tiqvahVideo from '../assets/images/tiqvah-video.mp4'
+import { useScrollAnimation } from '../hooks/useScrollAnimation'
+import AnimatedText from './AnimatedText'
 
 
 const Hero = () => {
@@ -14,6 +16,14 @@ const Hero = () => {
 	const slides = [
 		slide1, slide2,slide3,slide4,slide5
 	]
+
+	// Refs for scroll animations
+	const missionTitleRef = useScrollAnimation({ animation: 'fadeIn', duration: 1 })
+	const missionTextRef = useScrollAnimation({ animation: 'slideUp', duration: 1, delay: 0.2 })
+	const videoTitleRef = useScrollAnimation({ animation: 'fadeIn', duration: 1 })
+	const gmcTitleRef = useScrollAnimation({ animation: 'slideUp', duration: 1 })
+	const servicesTitleRef = useScrollAnimation({ animation: 'fadeIn', duration: 1 })
+	const ctaTitleRef = useScrollAnimation({ animation: 'slideUp', duration: 1 })
 
 	// Auto-advance slides
 	useEffect(() => {
@@ -35,7 +45,7 @@ const Hero = () => {
 	return (
 		<div>
 			{/* Hero Section */}
-			<div className="relative min-h-[500px] md:min-h-[600px] lg:min-h-[700px] overflow-hidden">
+			<div className="relative min-h-[450px] md:min-h-[500px] lg:min-h-[550px] overflow-hidden">
 				{/* Background Image */}
 				<img 
 					src={heroImg} 
@@ -43,14 +53,14 @@ const Hero = () => {
 					className="absolute inset-0 w-full h-full object-cover"
 				/>
 				{/* Overlay */}
-				<div className="absolute inset-0 bg-gradient-to-br from-purple-900/80 via-purple-800/70 to-amber-900/60 flex flex-col items-start justify-center px-4 md:px-8 lg:px-16 z-10">
+				<div className="absolute inset-0 bg-gradient-to-br from-purple-900/80 via-purple-800/70 to-amber-900/60 flex flex-col items-center justify-center px-4 md:px-8 lg:px-16 z-10">
 					{/* Small header text */}
-					<p className="text-xs sm:text-sm md:text-base lg:text-lg uppercase tracking-widest text-gray-200 mb-4 md:mb-6 animate-fade-in-up">
+					<p className="text-xs sm:text-sm md:text-sm lg:text-base uppercase tracking-widest text-gray-200 mb-3 md:mb-4 animate-fade-in-up text-center">
 						For Communities & Organizations Building Sustainable Impact
 					</p>
 					
 					{/* Main headline with creative styling */}
-					<h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold leading-tight mb-6 md:mb-8">
+					<h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-4 md:mb-6 text-center">
 						<span className="block text-white animate-slide-in-left">
 							Empowering all your
 						</span>
@@ -63,17 +73,17 @@ const Hero = () => {
 					</h1>
 					
 					{/* Description */}
-					<p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-100 max-w-3xl mb-6 md:mb-8 leading-relaxed animate-fade-in-up animation-delay-500">
+					<p className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-100 max-w-3xl mb-4 md:mb-6 leading-relaxed animate-fade-in-up animation-delay-500 text-center">
 						Integrating innovative technology solutions with traditional approaches to support sustainable development. 
 						We empower underserved communities through capacity building, research, and digital transformation.
 					</p>
 					
 					{/* CTA Buttons */}
-					<div className="flex flex-col sm:flex-row gap-4 animate-fade-in-up animation-delay-500">
-						<button className="bg-amber-500 text-white px-6 py-3 md:px-8 md:py-4 text-sm md:text-base font-semibold rounded-lg shadow-lg hover:bg-amber-400 transition-all hover:scale-105">
+					<div className="flex flex-col sm:flex-row gap-4 animate-fade-in-up animation-delay-500 justify-center">
+						<button className="bg-amber-500 text-white px-5 py-2.5 md:px-6 md:py-3 text-sm md:text-base font-semibold rounded-lg shadow-lg hover:bg-amber-400 transition-all hover:scale-105">
 							Donate Now
 						</button>
-						<button className="bg-transparent border-2 border-white text-white px-6 py-3 md:px-8 md:py-4 text-sm md:text-base font-semibold rounded-lg hover:bg-white hover:text-purple-700 transition-all hover:scale-105">
+						<button className="bg-transparent border-2 border-white text-white px-5 py-2.5 md:px-6 md:py-3 text-sm md:text-base font-semibold rounded-lg hover:bg-white hover:text-purple-700 transition-all hover:scale-105">
 							Learn More
 						</button>
 					</div>
@@ -91,10 +101,10 @@ const Hero = () => {
 						{/* Left Side - Text Content */}
 						<div className="space-y-8">
 							<div>
-								<h2 className="text-5xl md:text-6xl font-bold text-purple-900 mb-6">
+								<h2 ref={missionTitleRef} className="text-5xl md:text-6xl font-bold text-purple-900 mb-6">
 									Empowering Communities Through <span className="text-amber-500">Innovation</span>
 								</h2>
-								<p className="text-lg text-gray-700 leading-relaxed">
+								<p ref={missionTextRef} className="text-lg text-gray-700 leading-relaxed">
 									Tiqvah Solutions Limited integrates cutting-edge technology with traditional community engagement methods. We believe in creating sustainable development through capacity building, research, and digital transformation that drives lasting impact in underserved communities across Africa.
 								</p>
 							</div>
@@ -202,12 +212,16 @@ const Hero = () => {
 			<div className="bg-gradient-to-br from-purple-50 to-amber-50 py-20 px-6">
 				<div className="max-w-6xl mx-auto">
 					<div className="text-center mb-12">
-						<h2 className="text-4xl md:text-5xl font-bold text-purple-900 mb-4">
+						<h2 ref={videoTitleRef} className="text-4xl md:text-5xl font-bold text-purple-900 mb-4">
 							See Our <span className="text-amber-500">Impact</span> in Action
 						</h2>
-						<p className="text-gray-700 text-lg max-w-2xl mx-auto">
-							Watch how we're transforming communities through innovative solutions and sustainable development
-						</p>
+						<AnimatedText
+							text="Watch how we're transforming communities through innovative solutions and sustainable development"
+							className="text-gray-700 text-lg max-w-2xl mx-auto"
+							animation="fadeIn"
+							stagger={0.05}
+							duration={0.6}
+						/>
 					</div>
 					
 					{/* Video Container */}
@@ -229,12 +243,16 @@ const Hero = () => {
 			<div className="bg-gradient-to-br from-purple-900 via-purple-800 to-amber-900 text-white py-20 px-6">
 				<div className="max-w-7xl mx-auto">
 					<div className="text-center mb-12">
-						<h2 className="text-4xl md:text-5xl font-bold mb-4">
+						<h2 ref={gmcTitleRef} className="text-4xl md:text-5xl font-bold mb-4">
 							The <span className="text-amber-400">GMC</span> (Great Minds Corp)
 						</h2>
-						<p className="text-xl text-gray-200 max-w-3xl mx-auto">
-							Our CSR arm empowering marginalized communities with technology and knowledge
-						</p>
+						<AnimatedText
+							text="Our CSR arm empowering marginalized communities with technology and knowledge"
+							className="text-xl text-gray-200 max-w-3xl mx-auto"
+							animation="fadeIn"
+							stagger={0.08}
+							duration={0.7}
+						/>
 					</div>
 
 					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -295,12 +313,16 @@ const Hero = () => {
 			<div className="bg-white py-20 px-6">
 				<div className="max-w-7xl mx-auto">
 					<div className="text-center mb-4">
-						<h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+						<h2 ref={servicesTitleRef} className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
 							Our Services
 						</h2>
-						<p className="text-gray-500 text-base max-w-2xl mx-auto">
-							Comprehensive solutions that blend technology with traditional engagement for maximum impact
-						</p>
+						<AnimatedText
+							text="Comprehensive solutions that blend technology with traditional engagement for maximum impact"
+							className="text-gray-500 text-base max-w-2xl mx-auto"
+							animation="slideUp"
+							stagger={0.05}
+							duration={0.6}
+						/>
 					</div>
 
 					{/* Services Grid */}
@@ -370,12 +392,16 @@ const Hero = () => {
 			{/* Call to Action Section */}
 			<div className="bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 py-16 px-6">
 				<div className="max-w-4xl mx-auto text-center">
-					<h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-800">
+					<h2 ref={ctaTitleRef} className="text-3xl md:text-4xl font-bold mb-6 text-gray-800">
 						Ready to Make a <span className="text-purple-700">Difference?</span>
 					</h2>
-					<p className="text-lg md:text-xl mb-8 text-gray-600">
-						Partner with us to create lasting change in communities through innovative solutions and collaborative action.
-					</p>
+					<AnimatedText
+						text="Partner with us to create lasting change in communities through innovative solutions and collaborative action."
+						className="text-lg md:text-xl mb-8 text-gray-600"
+						animation="fadeIn"
+						stagger={0.06}
+						duration={0.7}
+					/>
 					<div className="flex flex-col sm:flex-row gap-4 justify-center">
 						<button className="bg-purple-700 text-white px-8 py-4 rounded-lg shadow-lg hover:bg-purple-600 transition-all hover:scale-105 font-semibold">
 							Partner With Us

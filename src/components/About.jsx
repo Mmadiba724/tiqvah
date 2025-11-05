@@ -5,46 +5,73 @@ import we from '../assets/images/we.jpeg'
 const About = () => {
 	return (
 		<section className="bg-white text-gray-800">
-			{/* Hero Section */}
-			<div className="py-32 px-6">
-				<div className="max-w-7xl mx-auto">
-					<div className="grid md:grid-cols-2 gap-12 items-center mb-16">
+			{/* Hero Section - Bold Statement Design */}
+			<div className="bg-white text-black min-h-screen">
+				<div className="max-w-7xl mx-auto px-6 py-20 md:py-32">
+					<div className="grid md:grid-cols-2 gap-16 items-center mb-20">
+						{/* Left Side - Bold Statement */}
 						<div>
-							<h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-8">
-								Our Dream is Global Learning Transformation
+							<p className="text-sm md:text-base uppercase tracking-widest text-amber-600 mb-8">
+								For Communities & Changemakers
+							</p>
+
+							<h1 className="text-6xl md:text-7xl lg:text-8xl font-extrabold leading-none mb-12">
+								<span className="block mb-4">WE</span>
+								<span className="block mb-4">EMPOWER</span>
+								<span className="block text-amber-500">COMMUNITIES</span>
 							</h1>
-							<p className="text-xl md:text-2xl text-gray-600 leading-relaxed">
-								Tiqvah Solutions was founded by passionate changemakers dedicated to empowering communities and driving transformation. 
-								We create digital havens of knowledge accessible to all, building a global community of learners connected by the desire 
-								to <span className="text-purple-700 font-semibold">explore, learn, and grow</span>.
+
+							<p className="text-xl md:text-2xl text-purple-500 leading-relaxed italic mb-8">
+								If you dream of change, you are a changemaker
 							</p>
 						</div>
+
+						{/* Right Side - Image
 						<div>
-							<img 
-								src={we} 
-								alt="Tiqvah Solutions Team" 
-								className="w-full h-auto border-8 border-purple-700 shadow-2xl"
+							<img
+								src={we}
+								alt="Tiqvah Solutions Team"
+								className="w-full h-auto shadow-2xl"
 							/>
-						</div>
+						</div> */}
 					</div>
 
-					{/* Stats - Minimalist */}
-					<div className="grid grid-cols-2 md:grid-cols-4 gap-12 pt-16 border-t border-gray-200">
+					{/* Featured Content Section */}
+					<div className="grid md:grid-cols-2 gap-12 items-start pt-16 border-t border-purple-700/30">
+						{/* Left - Image */}
 						<div>
-							<div className="text-5xl md:text-6xl font-bold text-purple-700 mb-2">3.5</div>
-							<div className="text-gray-600 uppercase tracking-wider text-sm">Years Experience</div>
+							<img
+								src={we}
+								alt="Community Impact"
+								className="w-full h-auto shadow-xl"
+							/>
 						</div>
+
+						{/* Right - Featured Story */}
 						<div>
-							<div className="text-5xl md:text-6xl font-bold text-purple-700 mb-2">23</div>
-							<div className="text-gray-600 uppercase tracking-wider text-sm">Projects</div>
-						</div>
-						<div>
-							<div className="text-5xl md:text-6xl font-bold text-purple-700 mb-2">830+</div>
-							<div className="text-gray-600 uppercase tracking-wider text-sm">Reviews</div>
-						</div>
-						<div>
-							<div className="text-5xl md:text-6xl font-bold text-purple-700 mb-2">100K</div>
-							<div className="text-gray-600 uppercase tracking-wider text-sm">Students</div>
+							<p className="text-sm uppercase tracking-widest text-amber-400 mb-4">
+								Our Story
+							</p>
+							<h2 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+								Global Learning Transformation
+							</h2>
+							<p className="text-lg md:text-xl text-gray-300 leading-relaxed mb-8">
+								Tiqvah Solutions was founded by passionate changemakers dedicated to empowering communities and driving transformation.
+								We create digital havens of knowledge accessible to all, building a global community of learners connected by the desire
+								to explore, learn, and grow.
+							</p>
+
+							{/* Inline Stats */}
+							<div className="grid grid-cols-2 gap-8 mt-12">
+								<div>
+									<div className="text-5xl md:text-6xl font-bold text-amber-400 mb-2">5K+</div>
+									<div className="text-gray-300 uppercase tracking-wider text-sm">Beneficiaries Reached</div>
+								</div>
+								<div>
+									<div className="text-5xl md:text-6xl font-bold text-amber-400 mb-2">23+</div>
+									<div className="text-gray-300 uppercase tracking-wider text-sm">Projects Completed</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>

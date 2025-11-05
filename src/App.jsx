@@ -12,9 +12,11 @@ import About from "./components/About.jsx";
 import Contact from "./components/Contact.jsx";
 import Services from "./components/Services.jsx";
 import Gmc from "./components/Gmc.jsx";
+import ScrollToTop from "./components/ScrollToTop.jsx";
 
 const App = () => (
-    <Router basename="/tiqvah">
+    <Router basename="/">
+        <ScrollToTop />
         <Navbar />
         <Routes>
             <Route path="/" element={<Hero />} />
