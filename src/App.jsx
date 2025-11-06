@@ -18,14 +18,16 @@ const App = () => (
     <Router basename="/">
         <ScrollToTop />
         <Navbar />
-        <Routes>
-            <Route path="/" element={<Hero />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/gmc" element={<Gmc />} />
-            <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
+        <div className="pt-[88px]">
+            <Routes>
+                <Route path="/" element={<Hero />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/services" element={<Services />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/gmc" element={<Gmc />} />
+                <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+        </div>
         <Footer />
     </Router>
 );

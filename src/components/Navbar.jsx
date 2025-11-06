@@ -83,10 +83,10 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className={`px-4 py-4 md:py-6 shadow-md sticky w-full top-0 left-0 z-50 transition-all duration-300 ${
-      isScrolling 
-        ? 'bg-gray-100/30 backdrop-blur-sm' 
-        : 'bg-gray-100'
+    <nav className={`px-4 py-4 md:py-6 shadow-md fixed w-full top-0 left-0 z-50 transition-all duration-300 ${
+      isScrolling
+        ? 'bg-white/70 backdrop-blur-md shadow-lg'
+        : 'bg-white shadow-md'
     }`}>
       <div className="flex justify-between items-center">
         {/* Logo */}
@@ -210,8 +210,8 @@ const Navbar = () => {
 
       <div className="relative">
         {/* Mobile Dropdown Menu */}
-        
-            <div className={"lg:hidden p-3 flex flex-col items-center space-y-4 fixed top-[70px] left-0 bg-white h-[calc(100vh-70px)] w-[100vw] transition-all duration-500 ease-in-out " + (isOpen ? "left-0" : "left-[150%]")}>
+
+            <div className={"lg:hidden p-3 flex flex-col items-center space-y-4 fixed top-[88px] left-0 bg-white h-[calc(100vh-88px)] w-[100vw] transition-all duration-500 ease-in-out " + (isOpen ? "left-0" : "left-[150%]")}>
               <div className="flex flex-col gap-1 w-full">
                 {links.map((link) => {
                   return (
