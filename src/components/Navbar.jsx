@@ -19,6 +19,7 @@ const links = [
   { label: "About Us", to: "/about" },
   { label: "Services", to: "/services" },
   { label: "The GMC (CSR Arm)", to: "/gmc" },
+  { label: "Donations", to: "/donations" },
   { label: "Our Impact", to: "/about" },
   { label: "Partner With Us", to: "/about" },
   { label: "Contact Us", to: "/contact" },
@@ -83,18 +84,18 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className={`px-4 py-4 md:py-6 shadow-md fixed w-full top-0 left-0 z-50 transition-all duration-300 ${
+    <nav className={`px-4 py-2 md:py-3 shadow-md fixed w-full top-0 left-0 z-50 transition-all duration-300 ${
       isScrolling
         ? 'bg-white/70 backdrop-blur-md shadow-lg'
         : 'bg-white shadow-md'
     }`}>
       <div className="flex justify-between items-center">
         {/* Logo */}
-        <Link to="/" className="flex items-center h-16">
+        <Link to="/" className="flex items-center h-14">
           <img
             src={logo}
             alt="Tiqvah Solutions"
-            className="h-30 w-40 object-contain hover:opacity-80 transition-opacity"
+            className="h-12 w-auto object-contain hover:opacity-80 transition-opacity"
           />
         </Link>
 
@@ -148,22 +149,14 @@ const Navbar = () => {
               items={GmcItems}
             />
           </li>
-          {/* <li className="relative flex items-center">
+          <li className="relative flex items-center">
             <Link
-            to="/about"
-            className="nav-link cursor-pointer hover:text-purple-700 transition-colors py-2"
+              to="/donations"
+              className="nav-link cursor-pointer hover:text-purple-700 transition-colors py-2"
             >
-            Our Impact
+              Donations
             </Link>
-            </li> */}
-          {/* <li className="relative flex items-center">
-                <Link
-                to="/about"
-                className="nav-link cursor-pointer hover:text-purple-700 transition-colors py-2"
-                >
-                Partner With Us
-                </Link>
-                </li> */}
+          </li>
           <li className="relative flex items-center">
             <Link
               to="/contact"
@@ -197,9 +190,11 @@ const Navbar = () => {
             label="Instagram"
             Icon={Instagram}
           />
-          <button className="bg-purple-700 text-white px-4 py-2 rounded-lg hover:bg-purple-600 transition-all">
-            Donate Now
-          </button>
+          <Link to="/donations">
+            <button className="bg-purple-700 text-white px-4 py-2 rounded-lg hover:bg-purple-600 transition-all">
+              Donate Now
+            </button>
+          </Link>
         </div>
 
         {/* Mobile Hamburger */}
@@ -211,7 +206,7 @@ const Navbar = () => {
       <div className="relative">
         {/* Mobile Dropdown Menu */}
 
-            <div className={"lg:hidden p-3 flex flex-col items-center space-y-4 fixed top-[88px] left-0 bg-white h-[calc(100vh-88px)] w-[100vw] transition-all duration-500 ease-in-out " + (isOpen ? "left-0" : "left-[150%]")}>
+            <div className={"lg:hidden p-3 flex flex-col items-center space-y-4 fixed top-[64px] left-0 bg-white h-[calc(100vh-64px)] w-[100vw] transition-all duration-500 ease-in-out " + (isOpen ? "left-0" : "left-[150%]")}>
               <div className="flex flex-col gap-1 w-full">
                 {links.map((link) => {
                   return (
@@ -252,9 +247,11 @@ const Navbar = () => {
               </div>
 
               {/* Donate Button */}
-              <button className="w-full bg-purple-700 text-white py-3 rounded-lg hover:bg-purple-600 transition-all">
-                Donate Now
-              </button>
+              <Link to="/donations" className="w-full">
+                <button className="w-full bg-purple-700 text-white py-3 rounded-lg hover:bg-purple-600 transition-all">
+                  Donate Now
+                </button>
+              </Link>
             </div>
       </div>
     </nav>

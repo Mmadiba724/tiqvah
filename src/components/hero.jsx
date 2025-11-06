@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { ChevronDown, Users, TrendingUp, BookOpen, Award, Heart, Rocket, ChevronLeft, ChevronRight } from 'lucide-react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import heroImg from '../assets/images/hero.jpeg'
 import slide1 from '../assets/images/slide1.jpeg'
 import slide2 from '../assets/images/slide2.jpeg'
@@ -10,12 +12,24 @@ import tiqvahVideo from '../assets/images/tiqvah-video.mp4'
 import { useScrollAnimation } from '../hooks/useScrollAnimation'
 import AnimatedText from './AnimatedText'
 
+gsap.registerPlugin(ScrollTrigger)
 
 const Hero = () => {
 	const [currentSlide, setCurrentSlide] = useState(0)
 	const slides = [
 		slide1, slide2,slide3,slide4,slide5
 	]
+
+	// Refs for animations
+	const heroTextRef = useRef(null)
+	const heroSubtextRef = useRef(null)
+	const heroButtonsRef = useRef(null)
+	const stat1Ref = useRef(null)
+	const stat2Ref = useRef(null)
+	const sliderRef = useRef(null)
+	const servicesRef = useRef([])
+	const gmcCardsRef = useRef([])
+	const videoRef = useRef(null)
 
 	// Refs for scroll animations
 	const missionTitleRef = useScrollAnimation({ animation: 'fadeIn', duration: 1 })
@@ -25,6 +39,141 @@ const Hero = () => {
 	const servicesTitleRef = useScrollAnimation({ animation: 'fadeIn', duration: 1 })
 	const ctaTitleRef = useScrollAnimation({ animation: 'slideUp', duration: 1 })
 
+	// GSAP Animations
+	useEffect(() => {
+		// Scroll to top on mount
+		window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
+
+		// Hero section entrance animations
+		const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
+
+		tl.fromTo(heroTextRef.current,
+			{ opacity: 0, y: 100 },
+			{ opacity: 1, y: 0, duration: 1.2 }
+		)
+		.fromTo(heroSubtextRef.current,
+			{ opacity: 0, y: 50 },
+			{ opacity: 1, y: 0, duration: 0.8 },
+			'-=0.6'
+		)
+		.fromTo(heroButtonsRef.current,
+			{ opacity: 0, scale: 0.8 },
+			{ opacity: 1, scale: 1, duration: 0.6 },
+			'-=0.4'
+		)
+
+		// Slider entrance animation
+		if (sliderRef.current) {
+			gsap.fromTo(sliderRef.current,
+				{ opacity: 0, x: 100, rotateY: -15 },
+				{
+					opacity: 1,
+					x: 0,
+					rotateY: 0,
+					duration: 1.2,
+					ease: 'power3.out',
+					scrollTrigger: {
+						trigger: sliderRef.current,
+						start: 'top 80%',
+						toggleActions: 'play none none reverse'
+					}
+				}
+			)
+		}
+
+		// Animated counters for statistics
+		const animateCounter = (ref, target, suffix = '') => {
+			if (!ref.current) return
+
+			const obj = { val: 0 }
+			gsap.to(obj, {
+				val: target,
+				duration: 2,
+				ease: 'power2.out',
+				scrollTrigger: {
+					trigger: ref.current,
+					start: 'top 80%',
+					toggleActions: 'play none none none'
+				},
+				onUpdate: function() {
+					ref.current.textContent = Math.round(obj.val) + suffix
+				}
+			})
+		}
+
+		animateCounter(stat1Ref, 5, 'K+')
+		animateCounter(stat2Ref, 100, '%')
+
+		// Services cards animation
+		servicesRef.current.forEach((card, index) => {
+			if (card) {
+				gsap.fromTo(card,
+					{ opacity: 0, y: 80, scale: 0.9, rotateX: -20 },
+					{
+						opacity: 1,
+						y: 0,
+						scale: 1,
+						rotateX: 0,
+						duration: 0.8,
+						delay: index * 0.15,
+						ease: 'back.out(1.4)',
+						scrollTrigger: {
+							trigger: card,
+							start: 'top 85%',
+							toggleActions: 'play none none reverse'
+						}
+					}
+				)
+			}
+		})
+
+		// GMC cards animation
+		gmcCardsRef.current.forEach((card, index) => {
+			if (card) {
+				gsap.fromTo(card,
+					{ opacity: 0, y: 60, scale: 0.8 },
+					{
+						opacity: 1,
+						y: 0,
+						scale: 1,
+						duration: 0.7,
+						delay: index * 0.1,
+						ease: 'power2.out',
+						scrollTrigger: {
+							trigger: card,
+							start: 'top 85%',
+							toggleActions: 'play none none reverse'
+						}
+					}
+				)
+			}
+		})
+
+		// Video section animation
+		if (videoRef.current) {
+			gsap.fromTo(videoRef.current,
+				{ opacity: 0, scale: 0.9, y: 50 },
+				{
+					opacity: 1,
+					scale: 1,
+					y: 0,
+					duration: 1,
+					ease: 'power3.out',
+					scrollTrigger: {
+						trigger: videoRef.current,
+						start: 'top 80%',
+						toggleActions: 'play none none reverse'
+					}
+				}
+			)
+		}
+
+		// Cleanup
+		return () => {
+			ScrollTrigger.getAll().forEach(trigger => trigger.kill())
+		}
+	}, [])
+
 	// Auto-advance slides
 	useEffect(() => {
 		const timer = setInterval(() => {
@@ -32,7 +181,7 @@ const Hero = () => {
 		}, 4000) // Change slide every 4 seconds
 
 		return () => clearInterval(timer)
-	}, [])
+	}, [slides.length])
 
 	const nextSlide = () => {
 		setCurrentSlide((prev) => (prev + 1) % slides.length)
@@ -45,7 +194,7 @@ const Hero = () => {
 	return (
 		<div>
 			{/* Hero Section */}
-			<div className="relative min-h-[450px] md:min-h-[500px] lg:min-h-[550px] overflow-hidden">
+			<div className="relative min-h-[550px] md:min-h-[650px] lg:min-h-[750px] overflow-hidden">
 				{/* Background Image */}
 				<img 
 					src={heroImg} 
@@ -55,31 +204,31 @@ const Hero = () => {
 				{/* Overlay */}
 				<div className="absolute inset-0 bg-gradient-to-br from-purple-900/80 via-purple-800/70 to-amber-900/60 flex flex-col items-center justify-center px-4 md:px-8 lg:px-16 z-10">
 					{/* Small header text */}
-					<p className="text-xs sm:text-sm md:text-sm lg:text-base uppercase tracking-widest text-gray-200 mb-3 md:mb-4 animate-fade-in-up text-center">
+					<p className="text-xs sm:text-sm md:text-sm lg:text-base xl:text-lg 2xl:text-xl uppercase tracking-widest text-gray-200 mb-3 md:mb-4 animate-fade-in-up text-center">
 						For Communities & Organizations Building Sustainable Impact
 					</p>
 					
 					{/* Main headline with creative styling */}
-					<h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-4 md:mb-6 text-center">
-						<span className="block text-white animate-slide-in-left">
+					<h1 ref={heroTextRef} className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold leading-tight mb-4 md:mb-6 text-center">
+						<span className="block text-white">
 							Empowering all your
 						</span>
-						<span className="block text-white animate-slide-in-left animation-delay-300">
+						<span className="block text-white">
 							community <span className="text-amber-400">development</span>
 						</span>
-						<span className="block text-white animate-slide-in-left animation-delay-500">
+						<span className="block text-white">
 							needs in <span className="text-amber-400 font-extrabold">one place</span>
 						</span>
 					</h1>
-					
+
 					{/* Description */}
-					<p className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-100 max-w-3xl mb-4 md:mb-6 leading-relaxed animate-fade-in-up animation-delay-500 text-center">
-						Integrating innovative technology solutions with traditional approaches to support sustainable development. 
+					<p ref={heroSubtextRef} className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-gray-100 max-w-3xl mb-4 md:mb-6 leading-relaxed text-center">
+						Integrating innovative technology solutions with traditional approaches to support sustainable development.
 						We empower underserved communities through capacity building, research, and digital transformation.
 					</p>
-					
+
 					{/* CTA Buttons */}
-					<div className="flex flex-col sm:flex-row gap-4 animate-fade-in-up animation-delay-500 justify-center">
+					<div ref={heroButtonsRef} className="flex flex-row gap-4 justify-center">
 						<button className="bg-amber-500 text-white px-5 py-2.5 md:px-6 md:py-3 text-sm md:text-base font-semibold rounded-lg shadow-lg hover:bg-amber-400 transition-all hover:scale-105">
 							Donate Now
 						</button>
@@ -89,7 +238,7 @@ const Hero = () => {
 					</div>
 				</div>
 				{/* Scroll Down Indicator */}
-				<div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-20">
+				<div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 lg:top-6 lg:right-6 lg:left-auto lg:transform-none z-20">
 					<ChevronDown className="w-8 h-8 text-white animate-bounce" />
 				</div>
 			</div>
@@ -112,18 +261,18 @@ const Hero = () => {
 							{/* Statistics */}
 							<div className="grid grid-cols-2 gap-8 pt-6">
 								<div>
-									<div className="text-6xl md:text-7xl font-bold text-amber-500 mb-2">
-										5K<span className="text-5xl">+</span>
+									<div ref={stat1Ref} className="text-6xl md:text-7xl font-bold text-amber-500 mb-2">
+										5K+
 									</div>
 									<p className="text-gray-700 text-base md:text-lg font-medium">
 										Beneficiaries reached through our programs and digital platforms
 									</p>
 								</div>
 								<div>
-									<div className="text-6xl md:text-7xl font-bold text-purple-700 mb-2">
-										100<span className="text-5xl">%</span>
+									<div ref={stat2Ref} className="text-6xl md:text-7xl font-bold text-purple-700 mb-2">
+										100%
 									</div>
-									<p className="text-gray-700 text-base md:text-lg font-medium">
+t									<p className="text-gray-700 text-base md:text-lg font-medium">
 										Commitment to integrating technology with traditional approaches
 									</p>
 								</div>
@@ -138,7 +287,7 @@ const Hero = () => {
 						</div>
 
 						{/* Right Side - Image Slider */}
-						<div className="relative">
+						<div ref={sliderRef} className="relative">
 							<div className="rounded-3xl overflow-hidden shadow-2xl relative group">
 								{/* Slides Container */}
 								<div className="relative w-full h-[500px]">
@@ -208,10 +357,10 @@ const Hero = () => {
 				</div>
 			</div>
 
-			{/* Video Section */}
-			<div className="bg-gradient-to-br from-purple-50 to-amber-50 py-20 px-6">
-				<div className="max-w-6xl mx-auto">
-					<div className="text-center mb-12">
+		{/* Video Section */}
+		<div id="video" className="bg-gradient-to-br from-purple-50 to-amber-50 py-20 px-6">
+			<div className="max-w-6xl mx-auto">
+				<div className="text-center mb-12">
 						<h2 ref={videoTitleRef} className="text-4xl md:text-5xl font-bold text-purple-900 mb-4">
 							See Our <span className="text-amber-500">Impact</span> in Action
 						</h2>
@@ -225,7 +374,7 @@ const Hero = () => {
 					</div>
 					
 					{/* Video Container */}
-					<div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl bg-gray-900 hover:shadow-3xl transition-shadow duration-300">
+					<div ref={videoRef} className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl bg-gray-900 hover:shadow-3xl transition-shadow duration-300">
 						<video
 							className="w-full h-full object-cover"
 							controls
@@ -255,9 +404,9 @@ const Hero = () => {
 						/>
 					</div>
 
-					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+					<div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
 						{/* GMC Program 1 */}
-						<div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 hover:bg-white/20 transition-all duration-300">
+						<div ref={el => gmcCardsRef.current[0] = el} className="bg-white/10 backdrop-blur-sm rounded-xl p-6 hover:bg-white/20 transition-all duration-300">
 							<div className="flex justify-center mb-4">
 								<Heart className="w-10 h-10 text-amber-400" />
 							</div>
@@ -268,18 +417,18 @@ const Hero = () => {
 						</div>
 
 						{/* GMC Program 2 */}
-						<div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 hover:bg-white/20 transition-all duration-300">
+						<div ref={el => gmcCardsRef.current[1] = el} className="bg-white/10 backdrop-blur-sm rounded-xl p-6 hover:bg-white/20 transition-all duration-300">
 							<div className="flex justify-center mb-4">
 								<Users className="w-10 h-10 text-amber-400" />
 							</div>
-							<h3 className="text-lg font-bold text-center mb-3">Leadership & Entrepreneurship</h3>
+							<h3 className="text-base font-bold text-center mb-3">Leadership & Entrepreneurship</h3>
 							<p className="text-sm text-gray-200 text-center">
 								Face-to-face mentorship and digital e-learning for women and PWDs
 							</p>
 						</div>
 
 						{/* GMC Program 3 */}
-						<div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 hover:bg-white/20 transition-all duration-300">
+						<div ref={el => gmcCardsRef.current[2] = el} className="bg-white/10 backdrop-blur-sm rounded-xl p-6 hover:bg-white/20 transition-all duration-300">
 							<div className="flex justify-center mb-4">
 								<Heart className="w-10 h-10 text-amber-400" />
 							</div>
@@ -290,7 +439,7 @@ const Hero = () => {
 						</div>
 
 						{/* GMC Program 4 */}
-						<div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 hover:bg-white/20 transition-all duration-300">
+						<div ref={el => gmcCardsRef.current[3] = el} className="bg-white/10 backdrop-blur-sm rounded-xl p-6 hover:bg-white/20 transition-all duration-300">
 							<div className="flex justify-center mb-4">
 								<Award className="w-10 h-10 text-amber-400" />
 							</div>
@@ -328,7 +477,7 @@ const Hero = () => {
 					{/* Services Grid */}
 					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-16">
 						{/* Service 1 */}
-						<div className="text-center group animate-fade-in-up">
+						<div ref={el => servicesRef.current[0] = el} className="text-center group">
 							<div className="flex justify-center mb-6">
 								<div className="w-24 h-24 bg-purple-600 rounded-full flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300 shadow-lg">
 									<TrendingUp className="w-10 h-10 text-white" />
@@ -341,7 +490,7 @@ const Hero = () => {
 						</div>
 
 						{/* Service 2 */}
-						<div className="text-center group animate-fade-in-up animation-delay-300">
+						<div ref={el => servicesRef.current[1] = el} className="text-center group">
 							<div className="flex justify-center mb-6">
 								<div className="w-24 h-24 bg-amber-500 rounded-full flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300 shadow-lg">
 									<BookOpen className="w-10 h-10 text-white" />
@@ -354,7 +503,7 @@ const Hero = () => {
 						</div>
 
 						{/* Service 3 */}
-						<div className="text-center group animate-fade-in-up animation-delay-500">
+						<div ref={el => servicesRef.current[2] = el} className="text-center group">
 							<div className="flex justify-center mb-6">
 								<div className="w-24 h-24 bg-purple-600 rounded-full flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300 shadow-lg">
 									<Rocket className="w-10 h-10 text-white" />
@@ -367,7 +516,7 @@ const Hero = () => {
 						</div>
 
 						{/* Service 4 */}
-						<div className="text-center group animate-fade-in-up animation-delay-700">
+						<div ref={el => servicesRef.current[3] = el} className="text-center group">
 							<div className="flex justify-center mb-6">
 								<div className="w-24 h-24 bg-amber-500 rounded-full flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300 shadow-lg">
 									<Award className="w-10 h-10 text-white" />
@@ -393,7 +542,7 @@ const Hero = () => {
 			<div className="bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 py-16 px-6">
 				<div className="max-w-4xl mx-auto text-center">
 					<h2 ref={ctaTitleRef} className="text-3xl md:text-4xl font-bold mb-6 text-gray-800">
-						Ready to Make a <span className="text-purple-700">Difference?</span>
+						Ready to Make a <span className="text-amber-600">Difference?</span>
 					</h2>
 					<AnimatedText
 						text="Partner with us to create lasting change in communities through innovative solutions and collaborative action."
@@ -403,11 +552,8 @@ const Hero = () => {
 						duration={0.7}
 					/>
 					<div className="flex flex-col sm:flex-row gap-4 justify-center">
-						<button className="bg-purple-700 text-white px-8 py-4 rounded-lg shadow-lg hover:bg-purple-600 transition-all hover:scale-105 font-semibold">
+						<button className="bg-amber-700 text-white px-8 py-4 rounded-lg shadow-lg hover:bg-purple-600 transition-all hover:scale-105 font-semibold">
 							Partner With Us
-						</button>
-						<button className="bg-amber-500 text-white px-8 py-4 rounded-lg shadow-lg hover:bg-amber-400 transition-all hover:scale-105 font-semibold">
-							Get In Touch
 						</button>
 					</div>
 				</div>
