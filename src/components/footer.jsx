@@ -1,4 +1,4 @@
-import React from 'react'
+import { useState } from 'react'
 import {SocialButton} from "./iconBtn.jsx";
 import {
 	Twitter,
@@ -10,30 +10,76 @@ import {
 	MapPin
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import logo from "../assets/images/logo.svg";
 
 const Footer = () => {
+	const [email, setEmail] = useState('')
+	const [message, setMessage] = useState('')
+	const maxChars = 200
+
+	const handleMessageChange = (e) => {
+		setMessage(e.target.value)
+	}
+
+	const handleSubmit = (e) => {
+		e.preventDefault()
+		// Handle form submission logic here
+		console.log('Email:', email, 'Message:', message)
+		// Reset form
+		setEmail('')
+		setMessage('')
+	}
+
 	return (
 		<footer className="bg-gray-900 text-gray-200">
 			{/* CTA Section - Get in touch */}
-			<div className="bg-gradient-to-r from-purple-700 via-purple-600 to-amber-600 py-8 px-6">
-				<div className="container mx-auto flex flex-col md:flex-row items-center justify-between gap-6 max-w-6xl">
-					<div className="text-white">
+			<div className="bg-purple-700 py-8 px-6">
+				<div className="container mx-auto max-w-6xl">
+					<div className="text-white mb-4">
 						<h3 className="text-2xl md:text-3xl font-bold mb-2">
 							Get in touch with us today
 						</h3>
 					</div>
-					<div className="flex gap-3 w-full md:w-auto">
-						<input
-							type="email"
-							placeholder="Enter your email"
-							className="px-6 py-3 rounded-lg w-full md:w-80 text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-400"
-						/>
-						<Link to="/contact">
-							<button className="bg-gray-900 text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors whitespace-nowrap">
+					<form onSubmit={handleSubmit} className="space-y-4">
+						{/* Email Input */}
+						<div className="flex sm:flex">
+							<input
+								type="email"
+								value={email}
+								onChange={(e) => setEmail(e.target.value)}
+								placeholder="Enter your email"
+								required
+								className="px-4 py-3 rounded-lg w-full sm:flex-1 bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-400 text-sm md:text-base"
+							/>
+						</div>
+
+						{/* Message Textarea */}
+						<div className="relative">
+							<textarea
+								value={message}
+								onChange={handleMessageChange}
+								placeholder="Type your message here..."
+								rows="3"
+								className="px-4 py-3 rounded-lg w-full bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-400 resize-none text-sm md:text-base"
+							/>
+							<div className="flex justify-between items-center mt-2 text-xs md:text-sm">
+								<span className={`${message.length > maxChars ? 'text-red-300' : 'text-gray-300'}`}>
+									{message.length} / {maxChars} characters
+								</span>
+								{message.length > maxChars && (
+									<Link to="/contact" className="text-amber-300 hover:text-amber-200 underline font-medium">
+										Message too long? Use our contact page →
+									</Link>
+								)}
+							</div>
+						</div>
+						<button
+								type="submit"
+								className="bg-gray-900 text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors whitespace-nowrap text-sm md:text-base"
+							>
 								Send Message
 							</button>
-						</Link>
-					</div>
+					</form>
 				</div>
 			</div>
 
@@ -41,14 +87,18 @@ const Footer = () => {
 			<div className="bg-gray-900 py-12">
 				<div className="container mx-auto px-6 lg:px-16">
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
-					
+
 					{/* Company Info */}
 					<div className="space-y-4">
-						<div className="flex items-center space-x-2 mb-4">
-							<div className="w-8 h-8 bg-purple-600 rounded flex items-center justify-center">
-								<span className="text-white font-bold text-xl">T</span>
-							</div>
-							<h3 className="text-xl font-bold text-white">Tiqvah Solutions</h3>
+						<div>
+							<Link to="/" className="flex items-center space-x-2 mb-4">
+								<img
+									src={logo}
+									alt="Tiqvah Solutions"
+									className="h-10 w-auto object-contain"
+								/>
+								<h3 className="text-lg font-bold break-words">Tiqvah Solutions</h3>
+							</Link>
 						</div>
 						<p className="text-sm text-gray-400 leading-relaxed">
 							Empowering communities through innovation, capacity building, and sustainable development solutions.
