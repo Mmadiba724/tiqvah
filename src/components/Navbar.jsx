@@ -208,9 +208,9 @@ const Navbar = () => {
 
             <div className={"lg:hidden p-3 flex flex-col items-center space-y-4 fixed top-[64px] left-0 bg-white h-[calc(100vh-64px)] w-[100vw] transition-all duration-500 ease-in-out " + (isOpen ? "left-0" : "left-[150%]")}>
               <div className="flex flex-col gap-1 w-full">
-                {links.map((link) => {
+                {links.map((link, index) => {
                   return (
-                    <Link onClick={() => { setIsOpen(false); }} to={link.to} className=" w-full p-2 rounded-lg hover:bg-gray-200 transition-colors duration-300 ease-in-out">
+                    <Link key={index} onClick={() => { setIsOpen(false); }} to={link.to} className=" w-full p-2 rounded-lg hover:bg-gray-200 transition-colors duration-300 ease-in-out">
                       {link.label}
                     </Link>
                   );

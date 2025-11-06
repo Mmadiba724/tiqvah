@@ -20,6 +20,8 @@ const About = () => {
 	const valuesRef = useRef([])
 	const partnershipCardsRef = useRef([])
 	const contactIconsRef = useRef([])
+	const missionRef = useRef(null)
+	const visionRef = useRef(null)
 
 	useEffect(() => {
 		// Scroll to top when component mounts or page reloads
@@ -168,6 +170,44 @@ const About = () => {
 			}
 		})
 
+		// Mission Animation
+		if (missionRef.current) {
+			gsap.fromTo(missionRef.current,
+				{ opacity: 0, x: -100, scale: 0.9 },
+				{
+					opacity: 1,
+					x: 0,
+					scale: 1,
+					duration: 1,
+					ease: "power3.out",
+					scrollTrigger: {
+						trigger: missionRef.current,
+						start: "top 80%",
+						toggleActions: "play none none reverse"
+					}
+				}
+			)
+		}
+
+		// Vision Animation
+		if (visionRef.current) {
+			gsap.fromTo(visionRef.current,
+				{ opacity: 0, x: 100, scale: 0.9 },
+				{
+					opacity: 1,
+					x: 0,
+					scale: 1,
+					duration: 1,
+					ease: "power3.out",
+					scrollTrigger: {
+						trigger: visionRef.current,
+						start: "top 80%",
+						toggleActions: "play none none reverse"
+					}
+				}
+			)
+		}
+
 		// Core Values Icons Animation
 		valuesRef.current.forEach((value, index) => {
 			if (value) {
@@ -245,7 +285,7 @@ const About = () => {
 			<div className="max-w-5xl mx-auto relative z-10">
 				<h1 className="text-5xl md:text-7xl font-bold mb-6 text-center">About Us</h1>
 				<p className="text-lg md:text-xl text-gray-200 text-center max-w-2xl mx-auto">
-					Home / About Us
+					Learn more about Tiqvah Solutions Limited, our mission, vision, and the impactful journey we've embarked on to empower marginalized communities through technology and sustainable development.
 				</p>
 			</div>
 		</div>
@@ -451,47 +491,50 @@ const About = () => {
 				</div>
 		</div>
 
-		{/* Our Approach Section */}
+		{/* Mission and Vision Section */}
 		<div className="pt-12 md:pt-16 pb-8 md:pb-32 px-4">
 			<div className="max-w-6xl mx-auto">
-				<h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-12">
-					Our Approach
+				<h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-12 text-center">
+					Mission & Vision
 				</h2>
 				
 				<div className="grid lg:grid-cols-2 gap-12 items-start">
-					{/* Left Column */}
-					<div className="space-y-8 text-lg md:text-xl text-gray-700 leading-relaxed">
-						<p className="text-3xl font-light text-purple-700">
-							Integrated. Data-Driven. Technology-Focused.
-						</p>
-						
-						<p>
-							At TSL, we believe the future of development lies in integrating technology with traditional engagement methods. 
-							Whether through in-person workshops, mobile apps, or cloud platforms, we combine the best of both worlds.
-						</p>
-						<p>
-							By leveraging <span className="font-semibold text-gray-900">data-driven insights</span> and 
-							<span className="font-semibold text-gray-900"> cutting-edge technologies</span>, we create solutions that are 
-							scalable, sustainable, and community-centered.
-						</p>
-
+					{/* Mission Column */}
+					<div className="space-y-6">
+						<div ref={missionRef} className="bg-gradient-to-br from-purple-50 to-purple-100 p-8 md:p-10 rounded-3xl border-2 border-purple-200 shadow-lg">
+							<div className="flex items-center gap-4 mb-6">
+								<div className="w-16 h-16 bg-purple-600 rounded-2xl flex items-center justify-center">
+									<svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+										<path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+									</svg>
+								</div>
+								<h3 className="text-3xl md:text-4xl font-bold text-purple-900">Our Mission</h3>
+							</div>
+							<p className="text-lg md:text-xl text-gray-800 leading-relaxed">
+								To empower communities, enable growth, and embrace technology by integrating innovative digital solutions 
+								with traditional approaches to community engagement. We aim to support sustainable development and drive 
+								lasting impact in underserved communities through capacity building, research, enterprise development, 
+								and consultancy services.
+							</p>
+						</div>
 					</div>
 					
-					{/* Right Column */}
-					<div className="space-y-8 text-lg md:text-xl text-gray-700 leading-relaxed">
-						<div className="grid gap-8 pt-4">
-							<div className="bg-purple-50 p-8 rounded-xl border border-purple-100">
-								<h3 className="text-2xl font-bold text-purple-700 mb-4">Tech-Enabled Solutions</h3>
-								<p className="text-gray-700">
-									We incorporate digital tools to expand our reach, improve efficiency, and enhance program impact.
-								</p>
+					{/* Vision Column */}
+					<div className="space-y-6">
+						<div ref={visionRef} className="bg-gradient-to-br from-amber-50 to-amber-100 p-8 md:p-10 rounded-3xl border-2 border-amber-200 shadow-lg">
+							<div className="flex items-center gap-4 mb-6">
+								<div className="w-16 h-16 bg-amber-600 rounded-2xl flex items-center justify-center">
+									<svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+										<path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+									</svg>
+								</div>
+								<h3 className="text-3xl md:text-4xl font-bold text-amber-900">Our Vision</h3>
 							</div>
-							<div className="bg-amber-50 p-8 rounded-xl border border-amber-100">
-								<h3 className="text-2xl font-bold text-amber-600 mb-4">Scalable & Sustainable</h3>
-								<p className="text-gray-700">
-									We design train-the-trainer models that empower local leaders to continue the work independently.
-								</p>
-							</div>
+							<p className="text-lg md:text-xl text-gray-800 leading-relaxed">
+								To create a future where digital inclusion and community-driven change go hand in hand. We envision a 
+								world where every individual, regardless of their geographical location or background, has access to 
+								the resources, skills, and opportunities they need to thrive and build sustainable, prosperous communities.
+							</p>
 						</div>
 					</div>
 				</div>
