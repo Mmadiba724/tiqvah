@@ -17,8 +17,8 @@ import { XyzTransition } from "@animxyz/react";
 const links = [
   { label: "Home", to: "/" },
   { label: "About Us", to: "/about" },
-  { label: "Services", to: "/services" },
   { label: "The GMC (CSR Arm)", to: "/gmc" },
+  { label: "Services", to: "/services" },
   { label: "Donations", to: "/donations" },
   { label: "Our Impact", to: "/about" },
   { label: "Partner With Us", to: "/about" },
@@ -124,21 +124,6 @@ const Navbar = () => {
               title={
                 <div className="flex items-center space-x-1">
                   <Link
-                    to="/services"
-                    className="hover:text-purple-700 transition-colors"
-                  >
-                    Services
-                  </Link>
-                </div>
-              }
-              items={ServiceItems}
-            />
-          </li>
-          <li className="relative flex items-center">
-            <NavDropdown
-              title={
-                <div className="flex items-center space-x-1">
-                  <Link
                     to="/gmc"
                     className="hover:text-purple-700 transition-colors"
                   >
@@ -149,6 +134,7 @@ const Navbar = () => {
               items={GmcItems}
             />
           </li>
+        
           <li className="relative flex items-center">
             <Link
               to="/donations"
@@ -156,6 +142,21 @@ const Navbar = () => {
             >
               Donations
             </Link>
+          </li>
+           <li className="relative flex items-center">
+            <NavDropdown
+              title={
+                <div className="flex items-center space-x-1">
+                  <Link
+                    to="/services"
+                    className="hover:text-purple-700 transition-colors"
+                  >
+                    Services
+                  </Link>
+                </div>
+              }
+              items={ServiceItems}
+            />
           </li>
           <li className="relative flex items-center">
             <Link
