@@ -5,10 +5,14 @@ const Contact = () => {
 	return (
 		<section className="bg-white text-gray-800">
 			{/* Hero */}
-			<div className="bg-gradient-to-r from-purple-700 to-amber-600 text-white py-32 px-6">
-				<div className="max-w-5xl mx-auto">
-					<h1 className="text-5xl md:text-7xl font-bold mb-6">Contact Us</h1>
-					<p className="text-2xl font-light">We'd love to hear from you</p>
+			<div className="bg-white text-gray-900 py-20 md:py-32 px-6">
+				<div className="max-w-5xl mx-auto text-center">
+					<h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight">
+						Let's <span className="text-purple-600">Connect</span>
+					</h1>
+					<p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto font-light">
+						Ready to make an <span className="text-amber-600 font-semibold">Impact?</span> We'd love to hear from you
+					</p>
 				</div>
 			</div>
 

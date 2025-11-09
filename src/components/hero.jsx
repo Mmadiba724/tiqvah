@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
+import { Link } from 'react-router-dom'
 import { ChevronDown, Users, TrendingUp, BookOpen, Award, Heart, Rocket, ChevronLeft, ChevronRight } from 'lucide-react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -229,12 +230,12 @@ const Hero = () => {
 
 					{/* CTA Buttons */}
 					<div ref={heroButtonsRef} className="flex flex-row gap-4 justify-center">
-						<button className="bg-amber-500 text-white px-5 py-2.5 md:px-6 md:py-3 text-sm md:text-base font-semibold rounded-lg shadow-lg hover:bg-amber-400 transition-all hover:scale-105">
+						<Link to="/donations" className="bg-amber-500 text-white px-5 py-2.5 md:px-6 md:py-3 text-sm md:text-base font-semibold rounded-lg shadow-lg hover:bg-amber-400 transition-all hover:scale-105">
 							Donate Now
-						</button>
-						<button className="bg-transparent border-2 border-white text-white px-5 py-2.5 md:px-6 md:py-3 text-sm md:text-base font-semibold rounded-lg hover:bg-white hover:text-purple-700 transition-all hover:scale-105">
+						</Link>
+						<Link to="/about" className="bg-transparent border-2 border-white text-white px-5 py-2.5 md:px-6 md:py-3 text-sm md:text-base font-semibold rounded-lg hover:bg-white hover:text-purple-700 transition-all hover:scale-105">
 							Learn More
-						</button>
+						</Link>
 					</div>
 				</div>
 				{/* Scroll Down Indicator */}
@@ -272,7 +273,7 @@ const Hero = () => {
 									<div ref={stat2Ref} className="text-6xl md:text-7xl font-bold text-purple-700 mb-2">
 										100%
 									</div>
-t									<p className="text-gray-700 text-base md:text-lg font-medium">
+								<p className="text-gray-700 text-base md:text-lg font-medium">
 										Commitment to integrating technology with traditional approaches
 									</p>
 								</div>
@@ -280,9 +281,9 @@ t									<p className="text-gray-700 text-base md:text-lg font-medium">
 
 							{/* CTA Button */}
 							<div className="pt-4">
-								<button className="bg-purple-900 text-white px-8 py-4 rounded-lg shadow-lg hover:bg-purple-800 transition-all hover:scale-105 font-semibold text-lg">
+								<Link to="/about" className="inline-block bg-purple-900 text-white px-8 py-4 rounded-lg shadow-lg hover:bg-purple-800 transition-all hover:scale-105 font-semibold text-lg">
 									Discover Our Story
-								</button>
+								</Link>
 							</div>
 						</div>
 
@@ -451,9 +452,9 @@ t									<p className="text-gray-700 text-base md:text-lg font-medium">
 					</div>
 
 					<div className="flex justify-center mt-12">
-						<button className="bg-amber-500 text-white px-8 py-4 rounded-lg shadow-lg hover:bg-amber-400 transition-all hover:scale-105 font-semibold">
+						<Link to="/gmc" className="inline-block bg-amber-500 text-white px-8 py-4 rounded-lg shadow-lg hover:bg-amber-400 transition-all hover:scale-105 font-semibold">
 							Learn More About The GMC
-						</button>
+						</Link>
 					</div>
 				</div>
 			</div>
@@ -531,9 +532,9 @@ t									<p className="text-gray-700 text-base md:text-lg font-medium">
 
 					{/* View More Button */}
 					<div className="flex justify-center mt-12">
-						<button className="bg-purple-700 text-white px-8 py-4 rounded-lg shadow-lg hover:bg-purple-600 transition-all hover:scale-105 font-semibold">
+						<Link to="/services" className="inline-block bg-purple-700 text-white px-8 py-4 rounded-lg shadow-lg hover:bg-purple-600 transition-all hover:scale-105 font-semibold">
 							View More of Our Services
-						</button>
+						</Link>
 					</div>
 				</div>
 			</div>
@@ -552,9 +553,9 @@ t									<p className="text-gray-700 text-base md:text-lg font-medium">
 						duration={0.7}
 					/>
 					<div className="flex flex-col sm:flex-row gap-4 justify-center">
-						<button className="bg-amber-700 text-white px-8 py-4 rounded-lg shadow-lg hover:bg-purple-600 transition-all hover:scale-105 font-semibold">
+						<Link to="/contact" className="inline-block bg-amber-700 text-white px-8 py-4 rounded-lg shadow-lg hover:bg-purple-600 transition-all hover:scale-105 font-semibold">
 							Partner With Us
-						</button>
+						</Link>
 					</div>
 				</div>
 			</div>

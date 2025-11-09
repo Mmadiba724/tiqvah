@@ -12,7 +12,7 @@ import {
 import { SocialButton } from "./iconBtn.jsx";
 import NavDropdown from "./NavDropdown.jsx";
 import { XyzTransition } from "@animxyz/react";
-import logo from "../assets/images/logo.svg";
+// Logo is now served from public/icons folder
 
 const links = [
   { label: "Home", to: "/" },
@@ -84,18 +84,18 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className={`px-4 py-2 md:py-3 shadow-md fixed w-full top-0 left-0 z-50 transition-all duration-300 ${
+    <nav className={`px-4 py-1.5 md:py-2 shadow-md fixed w-full top-0 left-0 z-50 transition-all duration-300 ${
       isScrolling
         ? 'bg-white/70 backdrop-blur-md shadow-lg'
         : 'bg-white shadow-md'
     }`}>
       <div className="flex justify-between items-center">
         {/* Logo */}
-        <Link to="/" className="flex items-center h-14">
+        <Link to="/" className="flex items-center">
           <img
-            src={logo}
+            src="/icons/logo.svg"
             alt="Tiqvah Solutions"
-            className="h-12 w-auto object-contain hover:opacity-80 transition-opacity"
+            className="h-12 md:h-14 w-auto object-contain hover:opacity-80 transition-opacity"
           />
         </Link>
 

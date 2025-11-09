@@ -10,7 +10,7 @@ import {
 	MapPin
 } from "lucide-react";
 import { Link } from "react-router-dom";
-import logo from "../assets/images/logo.svg";
+// Logo is now served from public/icons folder
 
 const Footer = () => {
 	const [email, setEmail] = useState('')
@@ -91,13 +91,12 @@ const Footer = () => {
 					{/* Company Info */}
 					<div className="space-y-4">
 						<div>
-							<Link to="/" className="flex items-center space-x-2 mb-4">
+							<Link to="/" className="flex items-center mb-4">
 								<img
-									src={logo}
+									src="/icons/logo.svg"
 									alt="Tiqvah Solutions"
-									className="h-10 w-auto object-contain"
+									className="h-16 w-auto object-contain"
 								/>
-								<h3 className="text-lg font-bold break-words">Tiqvah Solutions</h3>
 							</Link>
 						</div>
 						<p className="text-sm text-gray-400 leading-relaxed">
