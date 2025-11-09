@@ -254,44 +254,62 @@ const Services = () => {
 	return (
 		<section className="bg-white text-gray-800 overflow-hidden">
 			{/* Hero */}
-			<div className="bg-white text-gray-900 py-20 md:py-32 px-6">
-				<div className="max-w-7xl mx-auto text-center">
-					<h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight">
-						What We <span className="text-purple-600">Do</span>
-					</h1>
-					<p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto font-light">
-						Transforming Communities • <span className="text-amber-600 font-semibold">Driving Innovation</span>
-					</p>
+			<div className="relative bg-gradient-to-br from-purple-900 via-purple-800 to-amber-900 text-white py-16 md:py-24 lg:py-32 px-6 overflow-hidden">
+				{/* Curved wave decorations */}
+				<div className="absolute inset-0 overflow-hidden">
+					<div className="absolute top-0 left-0 w-full h-full">
+						{/* Multiple curved layers */}
+						<div className="absolute -top-24 -right-24 w-96 h-96 bg-purple-700/30 rounded-full blur-3xl"></div>
+						<div className="absolute top-12 -left-32 w-80 h-80 bg-amber-600/20 rounded-full blur-3xl"></div>
+						<div className="absolute bottom-0 right-1/4 w-72 h-72 bg-purple-600/25 rounded-full blur-3xl"></div>
+
+						{/* Curved stripes effect */}
+						<svg className="absolute inset-0 w-full h-full" viewBox="0 0 1440 320" preserveAspectRatio="none">
+							<path fill="rgba(245, 158, 11, 0.1)" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,133.3C672,139,768,181,864,197.3C960,213,1056,203,1152,181.3C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+						</svg>
+						<svg className="absolute inset-0 w-full h-full opacity-50" viewBox="0 0 1440 320" preserveAspectRatio="none" style={{transform: 'rotate(180deg)'}}>
+							<path fill="rgba(126, 34, 206, 0.15)" d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,213.3C672,224,768,224,864,208C960,192,1056,160,1152,144C1248,128,1344,128,1392,128L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+						</svg>
+					</div>
+				</div>
+
+				<div className="max-w-7xl mx-auto relative z-10">
+					<div className="text-center mb-8 md:mb-12">
+						<h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-3 md:mb-4 text-center">What We Do</h1>
+						<p className="text-lg md:text-xl lg:text-2xl font-light text-gray-200 max-w-3xl mx-auto mb-8 md:mb-12">
+							Transforming Communities • Driving Innovation
+						</p>
+					</div>
 				</div>
 			</div>
 
-			{/* Tools Section */}
-			<div>
-					{/* Tools Grid */}
-					<div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4 md:gap-6 pt-8 md:pt-12 lg:pt-16 px-4">
-						{tools.map((tool, index) => {
-							const Icon = tool.icon
-							const colors = ['bg-purple-600', 'bg-amber-500', 'bg-purple-500', 'bg-amber-600']
-							const hoverColors = ['hover:bg-purple-700', 'hover:bg-amber-600', 'hover:bg-purple-600', 'hover:bg-amber-700']
-							const iconColors = ['text-white', 'text-white', 'text-white', 'text-white']
-							const hoverIconColors = ['group-hover:text-amber-200', 'group-hover:text-purple-200', 'group-hover:text-amber-200', 'group-hover:text-purple-200']
+			{/* Tools Section - large screens */}
+			<div className="hidden md:block">
+				{/* Tools Grid (visible md and up) */}
+				<div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4 md:gap-6 pt-8 md:pt-12 lg:pt-16 px-4">
+					{tools.map((tool, index) => {
+						const Icon = tool.icon
+						const colors = ['bg-purple-600', 'bg-amber-500', 'bg-purple-500', 'bg-amber-600']
+						const hoverColors = ['hover:bg-purple-700', 'hover:bg-amber-600', 'hover:bg-purple-600', 'hover:bg-amber-700']
+						const iconColors = ['text-white', 'text-white', 'text-white', 'text-white']
+						const hoverIconColors = ['group-hover:text-amber-200', 'group-hover:text-purple-200', 'group-hover:text-amber-200', 'group-hover:text-purple-200']
 
-							const colorIndex = index % 4
+						const colorIndex = index % 4
 
-							return (
-								<div
-									key={index}
-									ref={el => iconRefs.current[index] = el}
-									className="flex flex-col items-center text-center group"
-								>
-									<div className={`w-14 h-14 md:w-16 md:h-16 ${colors[colorIndex]} ${hoverColors[colorIndex]} rounded-2xl shadow-xl flex items-center justify-center mb-3 group-hover:scale-110 group-hover:shadow-2xl transition-all duration-300`}>
-										<Icon className={`w-7 h-7 md:w-8 md:h-8 ${iconColors[colorIndex]} ${hoverIconColors[colorIndex]} transition-colors duration-300`} />
-									</div>
-									<p className="text-[10px] md:text-xs font-semibold text-gray-800">{tool.label}</p>
+						return (
+							<div
+								key={index}
+								ref={el => iconRefs.current[index] = el}
+								className="flex flex-col items-center text-center group"
+							>
+								<div className={`w-14 h-14 md:w-16 md:h-16 ${colors[colorIndex]} ${hoverColors[colorIndex]} rounded-2xl shadow-xl flex items-center justify-center mb-3 group-hover:scale-110 group-hover:shadow-2xl transition-all duration-300`}>
+									<Icon className={`w-7 h-7 md:w-8 md:h-8 ${iconColors[colorIndex]} ${hoverIconColors[colorIndex]} transition-colors duration-300`} />
 								</div>
-							)
-						})}
-					</div>
+								<p className="text-[10px] md:text-xs font-semibold text-gray-800">{tool.label}</p>
+							</div>
+						)
+					})}
+				</div>
 			</div>
 
 			{/* Services List with alternating layouts */}
@@ -361,6 +379,31 @@ const Services = () => {
 						</div>
 					)
 				})}
+			</div>
+
+			{/* Small-screen Tools (show on small only, placed before CTA) */}
+			<div className="block md:hidden">
+				{/* Compact Tools Grid for small screens: 2 rows (4 columns) */}
+				<div className="grid grid-cols-4 gap-3 pt-6 px-4">
+					{tools.map((tool, index) => {
+						const Icon = tool.icon
+						const colors = ['bg-purple-600', 'bg-amber-500', 'bg-purple-500', 'bg-amber-600']
+						const hoverColors = ['hover:bg-purple-700', 'hover:bg-amber-600', 'hover:bg-purple-600', 'hover:bg-amber-700']
+						const iconColors = ['text-white', 'text-white', 'text-white', 'text-white']
+						const hoverIconColors = ['group-hover:text-amber-200', 'group-hover:text-purple-200', 'group-hover:text-amber-200', 'group-hover:text-purple-200']
+
+						const colorIndex = index % 4
+
+						return (
+							<div key={index} className="flex flex-col items-center text-center group">
+								<div className={`w-10 h-10 ${colors[colorIndex]} ${hoverColors[colorIndex]} rounded-2xl shadow-md flex items-center justify-center mb-2 group-hover:scale-105 transition-all duration-200`}>
+									<Icon className={`w-5 h-5 ${iconColors[colorIndex]} ${hoverIconColors[colorIndex]} transition-colors duration-200`} />
+								</div>
+								<p className="text-[9px] font-semibold text-gray-800">{tool.label}</p>
+							</div>
+						)
+					})}
+				</div>
 			</div>
 
 			{/* CTA Section */}
