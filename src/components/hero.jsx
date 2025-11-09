@@ -193,37 +193,51 @@ const Hero = () => {
 	}
 
 	return (
-		<div>
+		<div className="relative">
+			{/* Full-viewport overlay using the same subtle theme tint + slight darkening */}
+			<div
+				className="fixed inset-0 pointer-events-none"
+				style={{
+					backgroundImage: `linear-gradient(to bottom right, rgba(99,102,241,0.10), rgba(245,158,11,0.06)), linear-gradient(rgba(0,0,0,0.10), rgba(0,0,0,0.10))`,
+					backgroundRepeat: 'no-repeat',
+					backgroundSize: 'cover',
+					zIndex: 0
+				}}
+				aria-hidden="true"
+			/>
+			{/* Page content (above the full-viewport overlay) */}
+			<div className="relative z-10">
 			{/* Hero Section */}
 			<div className="relative min-h-[550px] md:min-h-[650px] lg:min-h-[750px] overflow-hidden">
-				{/* Background Image */}
-				<img 
-					src={heroImg} 
-					alt="hero-img"
-					className="absolute inset-0 w-full h-full object-cover"
+				<div
+					className="absolute inset-0 w-full h-full bg-cover bg-center bg-fixed"
+					style={{
+						backgroundImage: `url(${heroImg})`,
+						backgroundSize: 'cover',
+						backgroundPosition: 'center',
+						backgroundAttachment: 'fixed',
+						filter: 'brightness(0.7)'
+					}}
+					aria-hidden="true"
 				/>
-				{/* Overlay */}
-				<div className="absolute inset-0 bg-gradient-to-br from-purple-900/80 via-purple-800/70 to-amber-900/60 flex flex-col items-center justify-center px-4 md:px-8 lg:px-16 z-10">
+				{/* Gradient Overlay for better text readability */}
+				<div className="absolute inset-0 bg-gradient-to-br from-black/50 via-purple-900/40 to-black/50"></div>
+				{/* Overlay content */}
+				<div className="absolute inset-0 flex flex-col items-center justify-center px-4 md:px-8 lg:px-16 z-10">
 					{/* Small header text */}
-					<p className="text-xs sm:text-sm md:text-sm lg:text-base xl:text-lg 2xl:text-xl uppercase tracking-widest text-gray-200 mb-3 md:mb-4 animate-fade-in-up text-center">
+					<p className="text-xs sm:text-sm md:text-sm lg:text-base xl:text-lg 2xl:text-xl uppercase tracking-widest text-gray-100 mb-3 md:mb-4 animate-fade-in-up text-center">
 						For Communities & Organizations Building Sustainable Impact
 					</p>
-					
-					{/* Main headline with creative styling */}
-					<h1 ref={heroTextRef} className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold leading-tight mb-4 md:mb-6 text-center">
-						<span className="block text-white">
-							Empowering all your
-						</span>
-						<span className="block text-white">
-							community <span className="text-amber-400">development</span>
-						</span>
-						<span className="block text-white">
-							needs in <span className="text-amber-400 font-extrabold">one place</span>
-						</span>
+
+					{/* Main headline*/}
+					<h1 ref={heroTextRef} className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-extrabold leading-tight mb-4 md:mb-6 text-center text-white drop-shadow-2xl">
+						Empowering all your<br/>
+						community <span className="text-amber-400">development</span><br/>
+						needs in <span className="text-amber-400 font-extrabold">one place</span>
 					</h1>
 
 					{/* Description */}
-					<p ref={heroSubtextRef} className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-gray-100 max-w-3xl mb-4 md:mb-6 leading-relaxed text-center">
+					<p ref={heroSubtextRef} className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-gray-50 max-w-3xl mb-4 md:mb-6 leading-relaxed text-center drop-shadow-lg">
 						Integrating innovative technology solutions with traditional approaches to support sustainable development.
 						We empower underserved communities through capacity building, research, and digital transformation.
 					</p>
@@ -243,7 +257,6 @@ const Hero = () => {
 					<ChevronDown className="w-8 h-8 text-white animate-bounce" />
 				</div>
 			</div>
-
 			{/* Mission, Vision & Values Section - Split Design */}
 			<div className="bg-gradient-to-br from-purple-50 via-white to-amber-50 py-20 px-6">
 				<div className="max-w-7xl mx-auto">
@@ -251,10 +264,10 @@ const Hero = () => {
 						{/* Left Side - Text Content */}
 						<div className="space-y-8">
 							<div>
-								<h2 ref={missionTitleRef} className="text-5xl md:text-6xl font-bold text-purple-900 mb-6">
+								<h2 ref={missionTitleRef} className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
 									Empowering Communities Through <span className="text-amber-500">Innovation</span>
 								</h2>
-								<p ref={missionTextRef} className="text-lg text-gray-700 leading-relaxed">
+								<p ref={missionTextRef} className="text-gray-700 text-lg leading-relaxed">
 									Tiqvah Solutions Limited integrates cutting-edge technology with traditional community engagement methods. We believe in creating sustainable development through capacity building, research, and digital transformation that drives lasting impact in underserved communities across Africa.
 								</p>
 							</div>
@@ -560,7 +573,9 @@ const Hero = () => {
 				</div>
 			</div>
 
+			</div>
 		</div>
 	)
 }
+
 export default Hero

@@ -2,10 +2,10 @@ import React, { useEffect, useRef } from "react"
 import { Link } from "react-router-dom"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import we from '../assets/images/we.jpeg'
-import we1 from '../assets/images/we1.jpeg'
+import we from '../assets/images/hero2.jpeg'
+import we1 from '../assets/images/gmc/Picture13.png'
 import we2 from '../assets/images/we2.jpeg'
-import we3 from '../assets/images/aboutus.svg'
+import we3 from '../assets/images/we.jpeg'
 
 gsap.registerPlugin(ScrollTrigger)
 
