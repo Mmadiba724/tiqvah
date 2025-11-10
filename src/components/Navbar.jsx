@@ -12,7 +12,7 @@ import {
 import { SocialButton } from "./iconBtn.jsx";
 import NavDropdown from "./NavDropdown.jsx";
 import { XyzTransition } from "@animxyz/react";
-// Logo is now served from public/icons folder
+import logo from '../assets/images/logo.svg';
 
 const links = [
   { label: "Home", to: "/" },
@@ -93,7 +93,7 @@ const Navbar = () => {
         {/* Logo */}
         <Link to="/" className="flex items-center">
           <img
-            src="/icons/logo.svg"
+            src={logo}
             alt="Tiqvah Solutions"
             className="h-12 md:h-14 w-auto object-contain hover:opacity-80 transition-opacity"
           />

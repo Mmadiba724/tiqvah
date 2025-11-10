@@ -24,7 +24,7 @@ const App = () => {
     }, []);
 
     return (
-        <Router basename="/">
+        <Router basename="/tiqvah/">
             <ScrollToTop />
             <Navbar />
             <div className="pt-[64px]">
