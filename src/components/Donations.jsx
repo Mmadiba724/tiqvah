@@ -1,5 +1,13 @@
-import React, { useState } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import { Link } from "react-router-dom"
+import { DollarSign, GraduationCap, Users } from 'lucide-react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import gmcLogo from '../assets/images/gmc/gmcLogo.svg'
+import aunuaLogo from '../assets/images/gmc/aunua.svg'
+import heroBg from '../assets/images/gmc/Picture1.png'
+
+gsap.registerPlugin(ScrollTrigger)
 
 const PROGRAM_PURPOSES = [
 	{
@@ -57,6 +65,44 @@ const Donations = () => {
 
 	const [errors, setErrors] = useState({})
 	const [submitted, setSubmitted] = useState(false)
+	const sectionsRef = useRef([])
+
+	// GSAP Scroll Animations
+	useEffect(() => {
+		sectionsRef.current.forEach((section) => {
+			if (section) {
+				gsap.fromTo(
+					section,
+					{
+						opacity: 0,
+						y: 60,
+					},
+					{
+						opacity: 1,
+						y: 0,
+						duration: 1,
+						ease: 'power3.out',
+						scrollTrigger: {
+							trigger: section,
+							start: 'top 80%',
+							end: 'top 50%',
+							toggleActions: 'play none none reverse',
+						},
+					}
+				)
+			}
+		})
+
+		return () => {
+			ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
+		}
+	}, [])
+
+	const addToRefs = (el) => {
+		if (el && !sectionsRef.current.includes(el)) {
+			sectionsRef.current.push(el)
+		}
+	}
 
 	const setField = (key, value) => {
 		setForm(prev => ({ ...prev, [key]: value }))
@@ -111,132 +157,193 @@ const Donations = () => {
 	return (
 		<section className="bg-white text-gray-800">
 			{/* Hero + logos */}
-			<div className="bg-gradient-to-r from-purple-700 to-amber-600 text-white py-12 md:py-20 px-6">
-				<div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-					<div>
-						<h1 className="text-2xl md:text-4xl font-bold">Support GMC & AUNUA Programs</h1>
-						<p className="mt-2 text-sm md:text-base text-white/90 max-w-2xl">Choose a cause below and select an amount — we show clear, program-specific impact so your donation goes exactly where it's needed.</p>
-					</div>
-					<div className="flex gap-4">
-						<div className="w-28 h-16 border-2 border-dashed border-white/60 rounded-md flex items-center justify-center text-sm">GMC logo</div>
-						<div className="w-28 h-16 border-2 border-dashed border-white/60 rounded-md flex items-center justify-center text-sm">AUNUA logo</div>
+			<div ref={addToRefs} className="relative bg-gradient-to-r from-purple-700 to-amber-600 text-white py-16 md:py-24 px-6 overflow-hidden">
+				{/* Background Image */}
+				<div className="absolute inset-0">
+					<img
+						src={heroBg}
+						alt="GMC Community"
+						className="w-full h-full object-cover"
+						style={{ filter: 'brightness(0.3)' }}
+					/>
+					<div className="absolute inset-0 bg-gradient-to-r from-purple-900/80 to-amber-900/80"></div>
+				</div>
+
+				{/* Content */}
+				<div className="relative z-10 max-w-6xl mx-auto">
+					<div className="flex flex-col md:flex-row items-center justify-between gap-8">
+						<div className="flex-1">
+							<h1 className="text-3xl md:text-5xl font-bold leading-tight mb-4">Support GMC & AUNUA Programs</h1>
+							<p className="text-lg md:text-xl text-white/95 max-w-2xl leading-relaxed">Choose a cause below and select an amount — we show clear, program-specific impact so your donation goes exactly where it's needed.</p>
+						</div>
+
+						{/* Logos */}
+						<div className="flex items-center gap-6 bg-white/10 backdrop-blur-sm rounded-2xl p-6 shadow-xl">
+							<img src={gmcLogo} alt="GMC Logo" className="h-20 md:h-24 w-auto object-contain" />
+							<div className="w-px h-20 bg-white/40"></div>
+							<img src={aunuaLogo} alt="AUNUA Logo" className="h-20 md:h-24 w-auto object-contain" />
+						</div>
 					</div>
 				</div>
 			</div>
 
-			<div className="max-w-6xl mx-auto py-12 px-6 grid lg:grid-cols-2 gap-12">
-				{/* Left: purpose + info */}
-				<div>
-					<h2 className="text-2xl font-bold text-purple-700 mb-4">What we need — choose a purpose</h2>
-					<p className="text-gray-700 mb-6">We organize our fundraising around the core needs of the initiative so donors can see direct impact. Pick a purpose to see suggested amounts and descriptions.</p>
-
-					<div className="space-y-4 mb-6">
-						{PROGRAM_PURPOSES.map(p => (
-							<label key={p.id} className={`block p-4 rounded-lg border ${form.purpose === p.id ? 'border-purple-600 bg-purple-50' : 'border-gray-200'} cursor-pointer`}> 
-								<input type="radio" name="purpose" value={p.id} checked={form.purpose === p.id} onChange={() => setField('purpose', p.id)} className="mr-3" />
-								<span className="font-semibold">{p.name}</span>
-								<div className="text-sm text-gray-600 mt-1">{p.desc}</div>
-								<div className="text-xs text-gray-500 mt-2">Suggested: {p.suggested.map((s,i) => <span key={i} className="mr-2">${s}</span>)}</div>
-							</label>
-						))}
-					</div>
-
-					<div className="rounded-lg border border-gray-200 p-4">
-						<h3 className="text-lg font-semibold mb-2">Selected purpose</h3>
-						<p className="text-gray-700 mb-4"><strong>{currentPurpose?.name}</strong> — {currentPurpose?.desc}</p>
-
-						<div className="mb-3">
-							<label className="block text-sm font-medium text-gray-700 mb-2">Choose an amount</label>
-							<div className="flex flex-wrap gap-3">
-								{(currentPurpose?.suggested || []).map(a => (
-									<button type="button" key={a} onClick={() => onPreset(a)} className={`px-4 py-2 rounded-md border ${form.preset === a ? 'bg-purple-600 text-white' : 'bg-white text-gray-800 border-gray-200'}`}>${a}</button>
-								))}
-								<button type="button" onClick={() => { setField('preset', null); setField('amount', ''); }} className="px-4 py-2 rounded-md border bg-white text-gray-700 border-gray-200">Custom</button>
-							</div>
-						</div>
-
-						<div className="mb-3">
-							<label className="block text-sm font-medium text-gray-700 mb-2">Amount (USD)</label>
-							<input type="number" value={form.amount} onChange={(e) => setField('amount', e.target.value)} className="w-full rounded-md border border-gray-200 p-3" placeholder="Enter an amount or pick a suggestion" />
-							{errors.amount && <p className="text-sm text-red-600 mt-1">{errors.amount}</p>}
-						</div>
-
-						<div className="flex items-center gap-3 mb-3">
-							<input id="recurring" type="checkbox" checked={form.recurring} onChange={(e) => setField('recurring', e.target.checked)} />
-							<label htmlFor="recurring" className="text-sm text-gray-700">Make this a recurring donation</label>
-						</div>
-
-						{form.recurring && (
-							<div className="mb-3">
-								<label className="block text-sm font-medium text-gray-700 mb-2">Frequency</label>
-								<select value={form.frequency} onChange={(e)=>setField('frequency', e.target.value)} className="w-full rounded-md border border-gray-200 p-3">
-									<option value="monthly">Monthly</option>
-									<option value="quarterly">Quarterly</option>
-									<option value="yearly">Yearly</option>
-								</select>
-							</div>
-						)}
-					</div>
+			{/* Main Content */}
+			<div ref={addToRefs} className="max-w-7xl mx-auto py-16 md:py-20 px-6">
+				{/* Section Header */}
+				<div className="text-center mb-12">
+					<h2 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-700 to-amber-600 mb-4">Choose Your Impact</h2>
+					<p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">We organize our fundraising around the core needs of the initiative so donors can see direct impact. Pick a purpose to see suggested amounts and descriptions.</p>
 				</div>
 
-				{/* Right: donor form and notes */}
+				{/* Selection */}
 				<div>
-					<form onSubmit={onSubmit} className="bg-gray-50 rounded-lg p-6 border border-gray-100 shadow-sm">
-						<h3 className="text-xl font-semibold mb-3">Donor Details</h3>
+					<h3 className="text-2xl md:text-3xl font-bold text-purple-700 mb-6">Select a Program</h3>
 
-						<div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-							<div>
-								<label className="block text-sm text-gray-700 mb-1">Full name</label>
-								<input type="text" value={form.name} onChange={(e)=>setField('name', e.target.value)} className="w-full rounded-md border border-gray-200 p-2" placeholder="Jane Doe" />
-								{errors.name && <p className="text-sm text-red-600">{errors.name}</p>}
+					<div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+							{PROGRAM_PURPOSES.map(p => (
+								<label key={p.id} className={`block p-6 rounded-2xl border-2 transition-all duration-300 ${form.purpose === p.id ? 'border-purple-600 bg-purple-50 shadow-lg' : 'border-gray-200 hover:border-purple-300 hover:shadow-md'} cursor-pointer h-full`}>
+									<div className="flex flex-col gap-4 h-full">
+										<input type="radio" name="purpose" value={p.id} checked={form.purpose === p.id} onChange={() => setField('purpose', p.id)} className="w-5 h-5 text-purple-600" />
+										<div className="flex-1">
+											<span className="text-lg md:text-xl font-bold text-gray-800 block mb-2">{p.name}</span>
+											<div className="text-base text-gray-600 mb-3 leading-relaxed">{p.desc}</div>
+											<div className="flex flex-wrap gap-2 text-sm">
+												<span className="text-purple-600 font-semibold">Suggested amounts:</span>
+												{p.suggested.map((s,i) => <span key={i} className="bg-purple-100 text-purple-700 px-3 py-1 rounded-full font-semibold">${s}</span>)}
+											</div>
+										</div>
+									</div>
+								</label>
+							))}
+						</div>
+
+						<div className="rounded-2xl bg-gradient-to-br from-purple-50 to-amber-50 border-2 border-purple-200 p-6 md:p-8 shadow-lg">
+							<h3 className="text-xl md:text-2xl font-bold text-purple-700 mb-4">Your Selection</h3>
+							<p className="text-base md:text-lg text-gray-700 mb-6"><strong className="text-purple-600">{currentPurpose?.name}</strong> — {currentPurpose?.desc}</p>
+
+							<div className="mb-6">
+								<label className="block text-base md:text-lg font-semibold text-gray-800 mb-4">Choose an amount</label>
+								<div className="flex flex-wrap gap-3">
+									{(currentPurpose?.suggested || []).map(a => (
+										<button type="button" key={a} onClick={() => onPreset(a)} className={`px-6 py-3 text-lg rounded-xl border-2 font-semibold transition-all duration-300 ${form.preset === a ? 'bg-purple-600 text-white border-purple-600 shadow-lg' : 'bg-white text-gray-800 border-gray-300 hover:border-purple-400 hover:shadow-md'}`}>${a}</button>
+									))}
+									<button type="button" onClick={() => { setField('preset', null); setField('amount', ''); }} className="px-6 py-3 text-lg rounded-xl border-2 bg-white text-gray-700 border-gray-300 hover:border-purple-400 hover:shadow-md font-semibold transition-all duration-300">Custom</button>
+								</div>
 							</div>
-							<div>
-								<label className="block text-sm text-gray-700 mb-1">Email</label>
-								<input type="email" value={form.email} onChange={(e)=>setField('email', e.target.value)} className="w-full rounded-md border border-gray-200 p-2" placeholder="you@example.com" />
-								{errors.email && <p className="text-sm text-red-600">{errors.email}</p>}
+
+							<div className="mb-6">
+								<label className="block text-base md:text-lg font-semibold text-gray-800 mb-3">Amount (USD)</label>
+								<div className="relative">
+									<span className="absolute left-4 top-1/2 -translate-y-1/2 text-2xl text-gray-400">$</span>
+									<input type="number" value={form.amount} onChange={(e) => setField('amount', e.target.value)} className="w-full rounded-xl border-2 border-gray-300 p-4 pl-10 text-lg focus:border-purple-500 focus:ring-2 focus:ring-purple-200" placeholder="Enter amount" />
+								</div>
+								{errors.amount && <p className="text-base text-red-600 mt-2">{errors.amount}</p>}
+							</div>
+
+							<div className="flex items-center gap-3 mb-6 p-4 bg-purple-50 rounded-xl border border-purple-200">
+								<input id="recurring" type="checkbox" checked={form.recurring} onChange={(e) => setField('recurring', e.target.checked)} className="w-5 h-5 text-purple-600" />
+								<label htmlFor="recurring" className="text-base font-medium text-gray-700">Make this a recurring donation</label>
+							</div>
+
+							{form.recurring && (
+								<div className="mb-6">
+									<label className="block text-base md:text-lg font-semibold text-gray-800 mb-3">Frequency</label>
+									<select value={form.frequency} onChange={(e)=>setField('frequency', e.target.value)} className="w-full rounded-xl border-2 border-gray-300 p-4 text-lg focus:border-purple-500 focus:ring-2 focus:ring-purple-200">
+										<option value="monthly">Monthly</option>
+										<option value="quarterly">Quarterly</option>
+										<option value="yearly">Yearly</option>
+									</select>
+								</div>
+							)}
+						</div>
+					</div>
+
+					{/* donor form and notes */}
+					<div className="mt-12 md:mt-16">
+						<form onSubmit={onSubmit} className="bg-white rounded-2xl p-6 md:p-8 border-2 border-gray-200 shadow-xl">
+							<h3 className="text-2xl md:text-3xl font-bold text-purple-700 mb-6">Your Information</h3>
+
+							<div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+								<div>
+									<label className="block text-base font-semibold text-gray-700 mb-2">Full name</label>
+									<input type="text" value={form.name} onChange={(e)=>setField('name', e.target.value)} className="w-full rounded-xl border-2 border-gray-300 p-3 text-base focus:border-purple-500 focus:ring-2 focus:ring-purple-200" placeholder="Nyanzi Doe" />
+									{errors.name && <p className="text-base text-red-600 mt-1">{errors.name}</p>}
+								</div>
+								<div>
+									<label className="block text-base font-semibold text-gray-700 mb-2">Email</label>
+									<input type="email" value={form.email} onChange={(e)=>setField('email', e.target.value)} className="w-full rounded-xl border-2 border-gray-300 p-3 text-base focus:border-purple-500 focus:ring-2 focus:ring-purple-200" placeholder="you@example.com" />
+									{errors.email && <p className="text-base text-red-600 mt-1">{errors.email}</p>}
+								</div>
+							</div>
+
+							<div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+								<div>
+									<label className="block text-base font-semibold text-gray-700 mb-2">Phone (optional)</label>
+									<input type="tel" value={form.phone} onChange={(e)=>setField('phone', e.target.value)} className="w-full rounded-xl border-2 border-gray-300 p-3 text-base focus:border-purple-500 focus:ring-2 focus:ring-purple-200" placeholder="+256770345678" />
+								</div>
+								<div>
+									<label className="block text-base font-semibold text-gray-700 mb-2">Organization (optional)</label>
+									<input type="text" value={form.organization} onChange={(e)=>setField('organization', e.target.value)} className="w-full rounded-xl border-2 border-gray-300 p-3 text-base focus:border-purple-500 focus:ring-2 focus:ring-purple-200" placeholder="Company or org" />
+								</div>
+							</div>
+
+							<div className="mb-5 p-4 bg-amber-50 rounded-xl border border-amber-200">
+								<label className="inline-flex items-center cursor-pointer">
+									<input type="checkbox" checked={form.anonymous} onChange={(e)=>setField('anonymous', e.target.checked)} className="w-5 h-5 text-purple-600" />
+									<span className="ml-3 text-base font-medium text-gray-700">Donate anonymously (hide name on public materials)</span>
+								</label>
+							</div>
+
+							<div className="mb-6">
+								<label className="block text-base font-semibold text-gray-700 mb-2">Message (optional)</label>
+								<textarea value={form.message} onChange={(e)=>setField('message', e.target.value)} className="w-full rounded-xl border-2 border-gray-300 p-4 text-base focus:border-purple-500 focus:ring-2 focus:ring-purple-200" rows={4} placeholder="Tell us why you support this cause (optional)"></textarea>
+							</div>
+
+							<div className="border-t-2 border-gray-200 pt-6">
+								<p className="text-base text-gray-600 mb-4">We will email a receipt to your address after donation.</p>
+								<button type="submit" className="w-full bg-gradient-to-r from-purple-600 to-amber-600 text-white px-8 py-4 rounded-xl font-bold text-lg hover:from-purple-700 hover:to-amber-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+									Proceed to Give →
+								</button>
+							</div>
+						</form>
+
+						<div className="mt-16 md:mt-20 bg-gradient-to-br from-purple-50 to-amber-50 rounded-2xl p-6 md:p-8 border-2 border-purple-200 shadow-lg">
+							<h4 className="text-xl md:text-2xl font-bold text-purple-700 mb-4">Impact of Your Gift</h4>
+							<ul className="space-y-3">
+								<li className="flex items-start gap-3">
+									<div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-md">
+										<DollarSign className="w-6 h-6 text-white" />
+									</div>
+									<div>
+										<strong className="text-lg text-purple-600">$25</strong>
+										<p className="text-base text-gray-700">Supplies & SIM/data for one participant</p>
+									</div>
+								</li>
+								<li className="flex items-start gap-3">
+									<div className="w-12 h-12 bg-gradient-to-br from-amber-500 to-amber-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-md">
+										<GraduationCap className="w-6 h-6 text-white" />
+									</div>
+									<div>
+										<strong className="text-lg text-purple-600">$100</strong>
+										<p className="text-base text-gray-700">Scholarship for training and a starter kit</p>
+									</div>
+								</li>
+								<li className="flex items-start gap-3">
+									<div className="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-md">
+										<Users className="w-6 h-6 text-white" />
+									</div>
+									<div>
+										<strong className="text-lg text-purple-600">$1,000</strong>
+										<p className="text-base text-gray-700">Support for a mini-cohort (training days + materials)</p>
+									</div>
+								</li>
+							</ul>
+							<div className="mt-6 p-4 bg-white rounded-xl border border-purple-200">
+								<p className="text-base text-gray-700">Prefer to donate in another currency or offline? <Link to="/contact" className="text-purple-600 font-bold hover:underline">Contact us</Link> and we'll help you.</p>
 							</div>
 						</div>
-
-						<div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3">
-							<div>
-								<label className="block text-sm text-gray-700 mb-1">Phone (optional)</label>
-								<input type="tel" value={form.phone} onChange={(e)=>setField('phone', e.target.value)} className="w-full rounded-md border border-gray-200 p-2" placeholder="+123456789" />
-							</div>
-							<div>
-								<label className="block text-sm text-gray-700 mb-1">Organization (optional)</label>
-								<input type="text" value={form.organization} onChange={(e)=>setField('organization', e.target.value)} className="w-full rounded-md border border-gray-200 p-2" placeholder="Company or org" />
-							</div>
-						</div>
-
-						<div className="mt-3">
-							<label className="inline-flex items-center">
-								<input type="checkbox" checked={form.anonymous} onChange={(e)=>setField('anonymous', e.target.checked)} />
-								<span className="ml-2 text-sm text-gray-700">Donate anonymously (hide name on public materials)</span>
-							</label>
-						</div>
-
-						<div className="mt-4">
-							<label className="block text-sm text-gray-700 mb-1">Message (optional)</label>
-							<textarea value={form.message} onChange={(e)=>setField('message', e.target.value)} className="w-full rounded-md border border-gray-200 p-2" rows={4} placeholder="Tell us why you support this cause (optional)"></textarea>
-						</div>
-
-						<div className="mt-4 flex items-center justify-between">
-							<div className="text-sm text-gray-600">We will email a receipt to your address after donation.</div>
-							<button type="submit" className="bg-purple-600 text-white px-5 py-2 rounded-md font-semibold">Proceed to Give</button>
-						</div>
-					</form>
-
-					<div className="mt-6 text-sm text-gray-600">
-						<h4 className="font-semibold mb-2">How your gift helps</h4>
-						<ul className="list-disc pl-5 space-y-1">
-							<li><strong>$25</strong> — supplies & SIM/data for one participant.</li>
-							<li><strong>$100</strong> — scholarship for training and a starter kit.</li>
-							<li><strong>$1,000</strong> — support for a mini-cohort (training days + materials).</li>
-						</ul>
-						<p className="mt-3">Prefer to donate in another currency or offline? <Link to="/contact" className="text-purple-600 font-semibold">Contact us</Link> and we'll help you.</p>
 					</div>
 				</div>
-			</div>
 		</section>
 	)
 }
