@@ -12,13 +12,13 @@ import {
 import { SocialButton } from "./iconBtn.jsx";
 import NavDropdown from "./NavDropdown.jsx";
 import { XyzTransition } from "@animxyz/react";
-import logo from "../assets/images/logo.svg";
+import logo from '../assets/images/logo.svg';
 
 const links = [
   { label: "Home", to: "/" },
   { label: "About Us", to: "/about" },
-  { label: "Services", to: "/services" },
   { label: "The GMC (CSR Arm)", to: "/gmc" },
+  { label: "Services", to: "/services" },
   { label: "Donations", to: "/donations" },
   { label: "Our Impact", to: "/about" },
   { label: "Partner With Us", to: "/about" },
@@ -84,18 +84,18 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className={`px-4 py-2 md:py-3 shadow-md fixed w-full top-0 left-0 z-50 transition-all duration-300 ${
+    <nav className={`px-4 py-1.5 md:py-2 shadow-md fixed w-full top-0 left-0 z-50 transition-all duration-300 ${
       isScrolling
         ? 'bg-white/70 backdrop-blur-md shadow-lg'
         : 'bg-white shadow-md'
     }`}>
       <div className="flex justify-between items-center">
         {/* Logo */}
-        <Link to="/" className="flex items-center h-14">
+        <Link to="/" className="flex items-center">
           <img
             src={logo}
             alt="Tiqvah Solutions"
-            className="h-12 w-auto object-contain hover:opacity-80 transition-opacity"
+            className="h-12 md:h-14 w-auto object-contain hover:opacity-80 transition-opacity"
           />
         </Link>
 
@@ -124,21 +124,6 @@ const Navbar = () => {
               title={
                 <div className="flex items-center space-x-1">
                   <Link
-                    to="/services"
-                    className="hover:text-purple-700 transition-colors"
-                  >
-                    Services
-                  </Link>
-                </div>
-              }
-              items={ServiceItems}
-            />
-          </li>
-          <li className="relative flex items-center">
-            <NavDropdown
-              title={
-                <div className="flex items-center space-x-1">
-                  <Link
                     to="/gmc"
                     className="hover:text-purple-700 transition-colors"
                   >
@@ -149,6 +134,7 @@ const Navbar = () => {
               items={GmcItems}
             />
           </li>
+        
           <li className="relative flex items-center">
             <Link
               to="/donations"
@@ -156,6 +142,21 @@ const Navbar = () => {
             >
               Donations
             </Link>
+          </li>
+           <li className="relative flex items-center">
+            <NavDropdown
+              title={
+                <div className="flex items-center space-x-1">
+                  <Link
+                    to="/services"
+                    className="hover:text-purple-700 transition-colors"
+                  >
+                    Services
+                  </Link>
+                </div>
+              }
+              items={ServiceItems}
+            />
           </li>
           <li className="relative flex items-center">
             <Link
@@ -208,9 +209,9 @@ const Navbar = () => {
 
             <div className={"lg:hidden p-3 flex flex-col items-center space-y-4 fixed top-[64px] left-0 bg-white h-[calc(100vh-64px)] w-[100vw] transition-all duration-500 ease-in-out " + (isOpen ? "left-0" : "left-[150%]")}>
               <div className="flex flex-col gap-1 w-full">
-                {links.map((link) => {
+                {links.map((link, index) => {
                   return (
-                    <Link onClick={() => { setIsOpen(false); }} to={link.to} className=" w-full p-2 rounded-lg hover:bg-gray-200 transition-colors duration-300 ease-in-out">
+                    <Link key={index} onClick={() => { setIsOpen(false); }} to={link.to} className=" w-full p-2 rounded-lg hover:bg-gray-200 transition-colors duration-300 ease-in-out">
                       {link.label}
                     </Link>
                   );

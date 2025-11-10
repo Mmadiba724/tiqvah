@@ -2,10 +2,10 @@ import React, { useEffect, useRef } from "react"
 import { Link } from "react-router-dom"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import we from '../assets/images/we.jpeg'
-import we1 from '../assets/images/we1.jpeg'
+import we from '../assets/images/hero2.jpeg'
+import we1 from '../assets/images/gmc/Picture13.png'
 import we2 from '../assets/images/we2.jpeg'
-import we3 from '../assets/images/we3.svg'
+import we3 from '../assets/images/we.jpeg'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -20,10 +20,31 @@ const About = () => {
 	const valuesRef = useRef([])
 	const partnershipCardsRef = useRef([])
 	const contactIconsRef = useRef([])
+	const missionRef = useRef(null)
+	const visionRef = useRef(null)
+	const heroHeadingRef = useRef(null)
 
 	useEffect(() => {
 		// Scroll to top when component mounts or page reloads
 		window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
+
+		// Hero Heading Animation
+		if (heroHeadingRef.current) {
+			gsap.fromTo(heroHeadingRef.current,
+				{ opacity: 0, y: 30 },
+				{
+					opacity: 1,
+					y: 0,
+					duration: 1,
+					ease: "power3.out",
+					scrollTrigger: {
+						trigger: heroHeadingRef.current,
+						start: "top 90%",
+						toggleActions: "play none none reverse"
+					}
+				}
+			)
+		}
 
 		// Hero Image Animation
 		if (heroImageRef.current) {
@@ -168,6 +189,44 @@ const About = () => {
 			}
 		})
 
+		// Mission Animation
+		if (missionRef.current) {
+			gsap.fromTo(missionRef.current,
+				{ opacity: 0, x: -100, scale: 0.9 },
+				{
+					opacity: 1,
+					x: 0,
+					scale: 1,
+					duration: 1,
+					ease: "power3.out",
+					scrollTrigger: {
+						trigger: missionRef.current,
+						start: "top 80%",
+						toggleActions: "play none none reverse"
+					}
+				}
+			)
+		}
+
+		// Vision Animation
+		if (visionRef.current) {
+			gsap.fromTo(visionRef.current,
+				{ opacity: 0, x: 100, scale: 0.9 },
+				{
+					opacity: 1,
+					x: 0,
+					scale: 1,
+					duration: 1,
+					ease: "power3.out",
+					scrollTrigger: {
+						trigger: visionRef.current,
+						start: "top 80%",
+						toggleActions: "play none none reverse"
+					}
+				}
+			)
+		}
+
 		// Core Values Icons Animation
 		valuesRef.current.forEach((value, index) => {
 			if (value) {
@@ -221,40 +280,12 @@ const About = () => {
 	}, [])
 
 	return (
-		<section className="bg-white text-gray-800">
+	<section className="bg-white text-gray-800">
 		{/* Hero */}
-		<div className="relative bg-gradient-to-br from-purple-900 via-purple-800 to-amber-900 text-white py-32 px-6 overflow-hidden">
-			{/* Curved wave decorations */}
-			<div className="absolute inset-0 overflow-hidden">
-				<div className="absolute top-0 left-0 w-full h-full">
-					{/* Multiple curved layers */}
-					<div className="absolute -top-24 -right-24 w-96 h-96 bg-purple-700/30 rounded-full blur-3xl"></div>
-					<div className="absolute top-12 -left-32 w-80 h-80 bg-amber-600/20 rounded-full blur-3xl"></div>
-					<div className="absolute bottom-0 right-1/4 w-72 h-72 bg-purple-600/25 rounded-full blur-3xl"></div>
-					
-					{/* Curved stripes effect */}
-					<svg className="absolute inset-0 w-full h-full" viewBox="0 0 1440 320" preserveAspectRatio="none">
-						<path fill="rgba(245, 158, 11, 0.1)" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,133.3C672,139,768,181,864,197.3C960,213,1056,203,1152,181.3C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
-					</svg>
-					<svg className="absolute inset-0 w-full h-full opacity-50" viewBox="0 0 1440 320" preserveAspectRatio="none" style={{transform: 'rotate(180deg)'}}>
-						<path fill="rgba(126, 34, 206, 0.15)" d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,213.3C672,224,768,224,864,208C960,192,1056,160,1152,144C1248,128,1344,128,1392,128L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
-					</svg>
-				</div>
-			</div>
-			
-			<div className="max-w-5xl mx-auto relative z-10">
-				<h1 className="text-5xl md:text-7xl font-bold mb-6 text-center">About Us</h1>
-				<p className="text-lg md:text-xl text-gray-200 text-center max-w-2xl mx-auto">
-					Home / About Us
-				</p>
-			</div>
-		</div>
-
-	{/* Detailed Story Section with Timeline - White Background */}
-	<div className="bg-white text-gray-900 py-16 md:py-20 px-6">
+	<div className="bg-white text-gray-900 pt-12 pb-16 md:pt-16 md:pb-20 px-6">
 		<div className="max-w-7xl mx-auto">
-			<div className="grid lg:grid-cols-2 gap-16 items-start">
-				{/* Left Side - Story Content */}
+			<div className="grid lg:grid-cols-2 gap-12 items-start mb-12">
+				{/* Left Side - Image */}
 				<div>
 					<div className="flex items-center gap-3 mb-6">
 						<div className="w-1 h-12 bg-amber-500"></div>
@@ -263,100 +294,108 @@ const About = () => {
 						</p>
 					</div>
 
-					<h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
+					<h2 ref={heroHeadingRef} className="text-4xl md:text-5xl lg:text-5xl font-bold mb-8 leading-tight">
 						<span className="text-purple-600">Empowering Communities,</span> Enabling Growth, <span className="text-amber-500">Embracing Technology</span>
-					</h2>	
+					</h2>
 
-					<p className="text-gray-700 leading-relaxed text-base mb-8">
-							Founded in 2020, Tiqvah Solutions Limited emerged from a vision to bridge the gap between technology 
-							and community development. We recognized that sustainable impact requires both innovation and 
-							grassroots engagement, leading us to create a unique hybrid model that combines digital transformation 
-							with traditional community approaches.
+					<p className="text-gray-700 leading-relaxed text-base md:text-lg mb-8">
+						Founded in 2020, Tiqvah Solutions Limited emerged from a vision to bridge the gap between technology
+						and community development. We recognized that sustainable impact requires both innovation and
+						grassroots engagement, leading us to create a unique hybrid model that combines digital transformation
+						with traditional community approaches.
 					</p>
 
-					{/* Timeline */}
-					<div className="mt-8 sm:mt-12 md:mt-16 overflow-x-hidden">
-						<div className="relative px-1">
-							{/* Timeline Line */}
-							<div ref={timelineRef} className="absolute top-6 sm:top-10 md:top-12 left-0 right-0 h-0.5 bg-gray-300"></div>
-							
-							{/* Timeline Items */}
-							<div className="grid grid-cols-5 gap-0.5 sm:gap-2 md:gap-4 relative">
-								{/* 2020 */}
-								<div ref={el => timelineItemsRef.current[0] = el} className="text-center">
-									<div className="relative mb-1 sm:mb-2 md:mb-4">
-										<div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 mx-auto bg-gradient-to-br from-purple-400 to-purple-500 rounded-full flex items-center justify-center relative z-10 animate-roll-in shadow-lg" style={{ animationDelay: '0.2s' }}>
-											<div className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 bg-white rounded-full"></div>
-										</div>
-										{/* Glow effect */}
-										<div className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-purple-400 rounded-full animate-pulse-glow opacity-50"></div>
-									</div>
-									<div className="text-[10px] sm:text-base md:text-xl font-bold mb-0.5 sm:mb-1 md:mb-2 animate-fade-in" style={{ animationDelay: '0.6s' }}>2020</div>
-									<div className="text-[8px] sm:text-xs md:text-sm text-gray-600 animate-fade-in leading-tight" style={{ animationDelay: '0.7s' }}>Establishment & Foundation</div>
-								</div>
-
-								{/* 2021 */}
-								<div ref={el => timelineItemsRef.current[1] = el} className="text-center">
-									<div className="relative mb-1 sm:mb-2 md:mb-4">
-										<div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 mx-auto bg-gradient-to-br from-purple-500 to-amber-400 rounded-full flex items-center justify-center relative z-10 animate-roll-in shadow-lg" style={{ animationDelay: '0.4s' }}>
-											<div className="w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 bg-white rounded-full"></div>
-										</div>
-									</div>
-									<div className="text-[10px] sm:text-base md:text-xl font-bold mb-0.5 sm:mb-1 md:mb-2 animate-fade-in" style={{ animationDelay: '0.8s' }}>2021</div>
-									<div className="text-[8px] sm:text-xs md:text-sm text-gray-600 animate-fade-in leading-tight" style={{ animationDelay: '0.9s' }}>First Programs Launch</div>
-								</div>
-
-								{/* 2022 */}
-								<div ref={el => timelineItemsRef.current[2] = el} className="text-center">
-									<div className="relative mb-1 sm:mb-2 md:mb-4">
-										<div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 mx-auto bg-gradient-to-br from-amber-400 to-amber-500 rounded-full flex items-center justify-center relative z-10 animate-roll-in shadow-lg" style={{ animationDelay: '0.6s' }}>
-											<div className="w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 bg-white rounded-full"></div>
-										</div>
-									</div>
-									<div className="text-[10px] sm:text-base md:text-xl font-bold mb-0.5 sm:mb-1 md:mb-2 animate-fade-in" style={{ animationDelay: '1s' }}>2022</div>
-									<div className="text-[8px] sm:text-xs md:text-sm text-gray-600 animate-fade-in leading-tight" style={{ animationDelay: '1.1s' }}>Digital Platform Launch</div>
-								</div>
-
-								{/* 2023 */}
-								<div ref={el => timelineItemsRef.current[3] = el} className="text-center">
-									<div className="relative mb-1 sm:mb-2 md:mb-4">
-										<div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 mx-auto bg-gradient-to-br from-amber-500 to-purple-500 rounded-full flex items-center justify-center relative z-10 animate-roll-in shadow-lg" style={{ animationDelay: '0.8s' }}>
-											<div className="w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 bg-white rounded-full"></div>
-										</div>
-									</div>
-									<div className="text-[10px] sm:text-base md:text-xl font-bold mb-0.5 sm:mb-1 md:mb-2 animate-fade-in" style={{ animationDelay: '1.2s' }}>2023</div>
-									<div className="text-[8px] sm:text-xs md:text-sm text-gray-600 animate-fade-in leading-tight" style={{ animationDelay: '1.3s' }}>5K+ Beneficiaries</div>
-								</div>
-
-								{/* 2024 */}
-								<div ref={el => timelineItemsRef.current[4] = el} className="text-center">
-									<div className="relative mb-1 sm:mb-2 md:mb-4">
-										<div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 mx-auto bg-gradient-to-br from-purple-600 to-amber-500 rounded-full flex items-center justify-center relative z-10 animate-roll-in shadow-lg" style={{ animationDelay: '1s' }}>
-											<div className="w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 bg-white rounded-full"></div>
-										</div>
-									{/* Success glow */}
-									<div className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-amber-500 rounded-full animate-pulse-glow opacity-50"></div>
-								</div>
-								<div className="text-[10px] sm:text-base md:text-xl font-bold mb-0.5 sm:mb-1 md:mb-2 animate-fade-in" style={{ animationDelay: '1.4s' }}>2024</div>
-								<div className="text-[8px] sm:text-xs md:text-sm text-gray-600 animate-fade-in leading-tight" style={{ animationDelay: '1.5s' }}>Regional Expansion</div>
-							</div>
-							</div>
-						</div>
-					</div>						
+					{/* Know More Button */}
+					<Link to="/contact" className="inline-block bg-purple-600 hover:bg-purple-700 text-white font-semibold px-8 py-3 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl">
+						Know More
+					</Link>
 				</div>
-
-					{/* Right Side - Large Image with Circular Badge */}
-					<div className="relative rounded-3xl p-2">
+				{/* Right Side - Story Content */}
+				<div className="relative hidden lg:block">
+					<div className="relative rounded-2xl overflow-hidden">
 						<img
 							ref={heroImageRef}
 							src={we3}
 							alt="Team at work"
-							className="w-full h-[300px] md:h-[400px] lg:h-[500px] xl:h-[700px] object-contain"
+							className="w-full h-[400px] md:h-[500px] lg:h-[550px] object-cover"
 						/>
 					</div>
 				</div>
 			</div>
+
+			{/* Timeline - Full Width Below */}
+			<div className="mt-12 lg:mt-16">
+				<div className="overflow-x-hidden">
+						<div className="relative px-1">
+							{/* Timeline Line */}
+							<div ref={timelineRef} className="absolute top-6 sm:top-8 md:top-10 left-0 right-0 h-0.5 bg-gray-300"></div>
+
+							{/* Timeline Items */}
+							<div className="grid grid-cols-5 gap-1 sm:gap-2 md:gap-3 relative">
+								{/* 2020 */}
+								<div ref={el => timelineItemsRef.current[0] = el} className="text-center">
+									<div className="relative mb-1 sm:mb-2">
+										<div className="w-9 h-9 sm:w-11 sm:h-11 md:w-12 md:h-12 mx-auto bg-gradient-to-br from-purple-400 to-purple-500 rounded-full flex items-center justify-center relative z-10 animate-roll-in shadow-lg" style={{ animationDelay: '0.2s' }}>
+											<div className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 bg-white rounded-full"></div>
+										</div>
+										{/* Glow effect */}
+										<div className="absolute top-0 left-1/2 -translate-x-1/2 w-9 h-9 sm:w-11 sm:h-11 md:w-12 md:h-12 bg-purple-400 rounded-full animate-pulse-glow opacity-50"></div>
+									</div>
+									<div className="text-xs sm:text-sm md:text-lg font-bold mb-0.5 sm:mb-1 animate-fade-in" style={{ animationDelay: '0.6s' }}>2020</div>
+									<div className="text-[9px] sm:text-xs md:text-sm text-gray-600 animate-fade-in leading-tight" style={{ animationDelay: '0.7s' }}>Establishment</div>
+								</div>
+
+								{/* 2021 */}
+								<div ref={el => timelineItemsRef.current[1] = el} className="text-center">
+									<div className="relative mb-1 sm:mb-2">
+										<div className="w-9 h-9 sm:w-11 sm:h-11 md:w-12 md:h-12 mx-auto bg-gradient-to-br from-purple-500 to-amber-400 rounded-full flex items-center justify-center relative z-10 animate-roll-in shadow-lg" style={{ animationDelay: '0.4s' }}>
+											<div className="w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 bg-white rounded-full"></div>
+										</div>
+									</div>
+									<div className="text-xs sm:text-sm md:text-lg font-bold mb-0.5 sm:mb-1 animate-fade-in" style={{ animationDelay: '0.8s' }}>2021</div>
+									<div className="text-[9px] sm:text-xs md:text-sm text-gray-600 animate-fade-in leading-tight" style={{ animationDelay: '0.9s' }}>First Programs</div>
+								</div>
+
+								{/* 2022 */}
+								<div ref={el => timelineItemsRef.current[2] = el} className="text-center">
+									<div className="relative mb-1 sm:mb-2">
+										<div className="w-9 h-9 sm:w-11 sm:h-11 md:w-12 md:h-12 mx-auto bg-gradient-to-br from-amber-400 to-amber-500 rounded-full flex items-center justify-center relative z-10 animate-roll-in shadow-lg" style={{ animationDelay: '0.6s' }}>
+											<div className="w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 bg-white rounded-full"></div>
+										</div>
+									</div>
+									<div className="text-xs sm:text-sm md:text-lg font-bold mb-0.5 sm:mb-1 animate-fade-in" style={{ animationDelay: '1s' }}>2022</div>
+									<div className="text-[9px] sm:text-xs md:text-sm text-gray-600 animate-fade-in leading-tight" style={{ animationDelay: '1.1s' }}>Digital Platform</div>
+								</div>
+
+								{/* 2023 */}
+								<div ref={el => timelineItemsRef.current[3] = el} className="text-center">
+									<div className="relative mb-1 sm:mb-2">
+										<div className="w-9 h-9 sm:w-11 sm:h-11 md:w-12 md:h-12 mx-auto bg-gradient-to-br from-amber-500 to-purple-500 rounded-full flex items-center justify-center relative z-10 animate-roll-in shadow-lg" style={{ animationDelay: '0.8s' }}>
+											<div className="w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 bg-white rounded-full"></div>
+										</div>
+									</div>
+									<div className="text-xs sm:text-sm md:text-lg font-bold mb-0.5 sm:mb-1 animate-fade-in" style={{ animationDelay: '1.2s' }}>2023</div>
+									<div className="text-[9px] sm:text-xs md:text-sm text-gray-600 animate-fade-in leading-tight" style={{ animationDelay: '1.3s' }}>5K+ Beneficiaries</div>
+								</div>
+
+								{/* 2024 */}
+								<div ref={el => timelineItemsRef.current[4] = el} className="text-center">
+									<div className="relative mb-1 sm:mb-2">
+										<div className="w-9 h-9 sm:w-11 sm:h-11 md:w-12 md:h-12 mx-auto bg-gradient-to-br from-purple-600 to-amber-500 rounded-full flex items-center justify-center relative z-10 animate-roll-in shadow-lg" style={{ animationDelay: '1s' }}>
+											<div className="w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 bg-white rounded-full"></div>
+										</div>
+									{/* Success glow */}
+									<div className="absolute top-0 left-1/2 -translate-x-1/2 w-9 h-9 sm:w-11 sm:h-11 md:w-12 md:h-12 bg-amber-500 rounded-full animate-pulse-glow opacity-50"></div>
+								</div>
+								<div className="text-xs sm:text-sm md:text-lg font-bold mb-0.5 sm:mb-1 animate-fade-in" style={{ animationDelay: '1.4s' }}>2024</div>
+								<div className="text-[9px] sm:text-xs md:text-sm text-gray-600 animate-fade-in leading-tight" style={{ animationDelay: '1.5s' }}>Regional Expansion</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
+	</div>
 
 
 		{/* Our Story Section - Dark Background with Split Layout */}
@@ -366,7 +405,7 @@ const About = () => {
 					{/* Left Side - Content */}
 					<div>
 					<h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-						Your Gateway To <span className="text-amber-600">Online Excellence</span>{" "}
+						Our impact <span className="text-amber-600">Through Our</span>{" "}
 						<span className="text-purple-600">Dream Big</span> In Pixels.
 					</h2>
 					{/* Large Image */}
@@ -404,7 +443,7 @@ const About = () => {
 
 					{/* Description */}
 					<div>
-						<p className="text-gray-600 leading-relaxed text-base">
+						<p className="text-gray-600 leading-relaxed text-lg md:text-xl mb-6">
 							Tiqvah Solutions Limited (TSL) is a forward-thinking social enterprise that integrates innovative 
 							technology solutions alongside traditional approaches to community engagement. We offer a comprehensive 
 							suite of services, including capacity building, research, enterprise development and consultancy, while 
@@ -451,47 +490,50 @@ const About = () => {
 				</div>
 		</div>
 
-		{/* Our Approach Section */}
+		{/* Mission and Vision Section */}
 		<div className="pt-12 md:pt-16 pb-8 md:pb-32 px-4">
 			<div className="max-w-6xl mx-auto">
-				<h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-12">
-					Our Approach
+				<h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-12 text-center">
+					Mission & Vision
 				</h2>
 				
 				<div className="grid lg:grid-cols-2 gap-12 items-start">
-					{/* Left Column */}
-					<div className="space-y-8 text-lg md:text-xl text-gray-700 leading-relaxed">
-						<p className="text-3xl font-light text-purple-700">
-							Integrated. Data-Driven. Technology-Focused.
-						</p>
-						
-						<p>
-							At TSL, we believe the future of development lies in integrating technology with traditional engagement methods. 
-							Whether through in-person workshops, mobile apps, or cloud platforms, we combine the best of both worlds.
-						</p>
-						<p>
-							By leveraging <span className="font-semibold text-gray-900">data-driven insights</span> and 
-							<span className="font-semibold text-gray-900"> cutting-edge technologies</span>, we create solutions that are 
-							scalable, sustainable, and community-centered.
-						</p>
-
+					{/* Mission Column */}
+					<div className="space-y-6">
+						<div ref={missionRef} className="bg-gradient-to-br from-purple-50 to-purple-100 p-8 md:p-10 rounded-3xl border-2 border-purple-200 shadow-lg">
+							<div className="flex items-center gap-4 mb-6">
+								<div className="w-16 h-16 bg-purple-600 rounded-2xl flex items-center justify-center">
+									<svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+										<path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+									</svg>
+								</div>
+								<h3 className="text-3xl md:text-4xl font-bold text-purple-900">Our Mission</h3>
+							</div>
+							<p className="text-lg md:text-xl text-gray-800 leading-relaxed">
+								To empower communities, enable growth, and embrace technology by integrating innovative digital solutions 
+								with traditional approaches to community engagement. We aim to support sustainable development and drive 
+								lasting impact in underserved communities through capacity building, research, enterprise development, 
+								and consultancy services.
+							</p>
+						</div>
 					</div>
 					
-					{/* Right Column */}
-					<div className="space-y-8 text-lg md:text-xl text-gray-700 leading-relaxed">
-						<div className="grid gap-8 pt-4">
-							<div className="bg-purple-50 p-8 rounded-xl border border-purple-100">
-								<h3 className="text-2xl font-bold text-purple-700 mb-4">Tech-Enabled Solutions</h3>
-								<p className="text-gray-700">
-									We incorporate digital tools to expand our reach, improve efficiency, and enhance program impact.
-								</p>
+					{/* Vision Column */}
+					<div className="space-y-6">
+						<div ref={visionRef} className="bg-gradient-to-br from-amber-50 to-amber-100 p-8 md:p-10 rounded-3xl border-2 border-amber-200 shadow-lg">
+							<div className="flex items-center gap-4 mb-6">
+								<div className="w-16 h-16 bg-amber-600 rounded-2xl flex items-center justify-center">
+									<svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+										<path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+									</svg>
+								</div>
+								<h3 className="text-3xl md:text-4xl font-bold text-amber-900">Our Vision</h3>
 							</div>
-							<div className="bg-amber-50 p-8 rounded-xl border border-amber-100">
-								<h3 className="text-2xl font-bold text-amber-600 mb-4">Scalable & Sustainable</h3>
-								<p className="text-gray-700">
-									We design train-the-trainer models that empower local leaders to continue the work independently.
-								</p>
-							</div>
+							<p className="text-lg md:text-xl text-gray-800 leading-relaxed">
+								To create a future where digital inclusion and community-driven change go hand in hand. We envision a 
+								world where every individual, regardless of their geographical location or background, has access to 
+								the resources, skills, and opportunities they need to thrive and build sustainable, prosperous communities.
+							</p>
 						</div>
 					</div>
 				</div>

@@ -10,7 +10,7 @@ import {
 	MapPin
 } from "lucide-react";
 import { Link } from "react-router-dom";
-import logo from "../assets/images/logo.svg";
+import logo from '../assets/images/logo.svg';
 
 const Footer = () => {
 	const [email, setEmail] = useState('')
@@ -35,10 +35,10 @@ const Footer = () => {
 			{/* CTA Section - Get in touch */}
 			<div className="bg-purple-700 py-8 px-6">
 				<div className="container mx-auto max-w-6xl">
-					<div className="text-white mb-4">
-						<h3 className="text-2xl md:text-3xl font-bold mb-2">
+					<div className="text-white text-center mb-4">
+						<h2 className="text-4xl md:text-3xl justify-center font-bold mb-3">
 							Get in touch with us today
-						</h3>
+						</h2>
 					</div>
 					<form onSubmit={handleSubmit} className="space-y-4">
 						{/* Email Input */}
@@ -49,7 +49,7 @@ const Footer = () => {
 								onChange={(e) => setEmail(e.target.value)}
 								placeholder="Enter your email"
 								required
-								className="px-4 py-3 rounded-lg w-full sm:flex-1 bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-400 text-sm md:text-base"
+								className="px-4 py-3 rounded-lg w-full sm:flex-1 bg-purple-100 text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-400 text-sm md:text-base"
 							/>
 						</div>
 
@@ -60,7 +60,7 @@ const Footer = () => {
 								onChange={handleMessageChange}
 								placeholder="Type your message here..."
 								rows="3"
-								className="px-4 py-3 rounded-lg w-full bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-400 resize-none text-sm md:text-base"
+								className="px-4 py-3 rounded-lg w-full bg-purple-100 text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-400 resize-none text-sm md:text-base"
 							/>
 							<div className="flex justify-between items-center mt-2 text-xs md:text-sm">
 								<span className={`${message.length > maxChars ? 'text-red-300' : 'text-gray-300'}`}>
@@ -91,13 +91,12 @@ const Footer = () => {
 					{/* Company Info */}
 					<div className="space-y-4">
 						<div>
-							<Link to="/" className="flex items-center space-x-2 mb-4">
+							<Link to="/" className="flex items-center mb-4">
 								<img
 									src={logo}
 									alt="Tiqvah Solutions"
-									className="h-10 w-auto object-contain"
+									className="h-16 w-auto object-contain"
 								/>
-								<h3 className="text-lg font-bold break-words">Tiqvah Solutions</h3>
 							</Link>
 						</div>
 						<p className="text-sm text-gray-400 leading-relaxed">
