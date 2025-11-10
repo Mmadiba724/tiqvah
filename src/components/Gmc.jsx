@@ -227,76 +227,6 @@ const Gmc = () => {
 				</div>
 			</div>
 
-			{/* Train-the-Trainer Programs */}
-			<div ref={addToRefs} className="bg-white py-20 px-6 lg:px-12">
-				<h2 className="text-5xl md:text-5xl text-center font-bold text-purple-600 mb-8">
-					Train-the-Trainer Programs
-				</h2>
-				<div className="grid md:grid-cols-2 gap-16 items-center">
-					<div>
-						<p className="text-lg text-gray-700 leading-relaxed mb-6">
-							Launched in <b>2024</b>, the GMC initiative began with the <b>first cohort of GMC founders</b> (five committed partners)
-							who underwent a <b>two-month mentorship program</b> focused on leadership and public management.
-						</p>
-						<p className="text-lg text-gray-700 leading-relaxed mb-6">
-							These pioneers, inspired by <b>AUNUA’s</b> expertise played a vital role in mastering the program, analyzing and modifying it to fit its purpose
-							and therefore replicating it by sharing their knowledge with a <b>second cohort of 12 partners</b>.
-							Over two months, these partners participated in <b>hybrid mentorship sessions</b>, blending virtual and in-person training to prepare them to become
-							catalysts for change. 
-						</p>
-						<p className="text-lg text-gray-700 leading-relaxed mb-8">
-							They graduated in May 2024, fully equipped to spread the program’s positive impact throughout their communities.
-						</p>
-					</div>
-					
-					<div className="bg-gradient-to-br from-amber-50 to-purple-50 p-8 rounded-2xl">
-						<h3 className="text-2xl font-bold text-indigo-600 mb-6">Self-Multiplication Model</h3>
-						<ul className="space-y-4">
-							<li className="flex items-start gap-3">
-								<span className="text-amber-600 text-xl">•</span>
-								<span className="text-gray-700">First cohort of 5 founders trained in leadership and public management</span>
-							</li>
-							<li className="flex items-start gap-3">
-								<span className="text-amber-600 text-xl">•</span>
-								<span className="text-gray-700">Founders replicated training with second cohort of 12 partners</span>
-							</li>
-							<li className="flex items-start gap-3">
-								<span className="text-amber-600 text-xl">•</span>
-								<span className="text-gray-700">Hybrid mentorship sessions: virtual and in-person training</span>
-							</li>
-							<li className="flex items-start gap-3">
-								<span className="text-amber-600 text-xl">•</span>
-								<span className="text-gray-700">May 2024 graduation with community impact tracking</span>
-							</li>
-							<li className="flex items-start gap-3">
-								<span className="text-amber-600 text-xl">•</span>
-								<span className="text-gray-700">Six-month follow-up for sustained impact and support</span>
-							</li>
-						</ul>
-					</div>
-				</div>
-				<div className="max-w-7xl mx-auto grid md:grid-row-2 gap-16 items-center pt-12">
-					{/* Static Image Grid Below Carousel */}
-					<div className="grid md:grid-cols-3 gap-6 mb-8">
-						<img
-							src={Picture20}
-							alt="Impact 1"
-							className="w-full h-[280px] object-cover rounded-2xl hover:scale-105 transition-transform duration-300"
-						/>
-						<img
-							src={Picture22}
-							alt="Impact 2"
-							className="w-full h-[280px] object-cover rounded-2xl hover:scale-105 transition-transform duration-300"
-						/>
-						<img
-							src={Picture21}
-							alt="Impact 3"
-							className="w-full h-[280px] object-cover rounded-2xl hover:scale-105 transition-transform duration-300"
-						/>
-					</div>
-				</div>
-			</div>
-
 			{/* Impact Expansion - Auto-Sliding Carousel */}
 			<div ref={addToRefs} className="bg-gradient-to-br from-purple-100 to-amber-20 py-20 pt-4 px-6 lg:px-12">
 				<div className="max-w-7xl mx-auto">
@@ -378,6 +308,52 @@ const Gmc = () => {
 				</div>
 			</div>
 
+			{/* Impact on Children and Youths in Vulnerable Communities */}
+			<div ref={addToRefs} id="youth-clubs" className="relative bg-white py-20 px-6 lg:px-12">
+				<div className="absolute inset-0">
+					<img
+						src={Picture16}
+						alt="Education and Mentorship"
+						className="w-full h-full object-cover rounded-2xl"
+						style={{ filter: 'brightness(0.35)' }}
+					/>
+					<div className="absolute inset-0 bg-white/60 rounded-2xl"></div>
+				</div>
+				<div className="relative max-w-6xl mx-auto z-10 py-10 px-2 md:px-6 lg:px-8">
+					<h2 className="text-5xl font-bold text-amber-200 mb-8 text-center">
+						Youth SRHR &amp; Menstrual Health Clubs
+					</h2>
+					<p className="text-lg text-black mb-8  text-center">
+						Creating safe spaces and opportunities for young minds to grow, learn, and thrive.
+					</p>
+					<div className="grid md:grid-cols-2 gap-8">
+						<div className="bg-white bg-opacity-90 rounded-2xl shadow-lg p-8 flex flex-col justify-center">
+							<h3 className="text-2xl font-bold text-indigo-600 mb-4">Sexual Reproductive Health Education</h3>
+							<p className="text-gray-700 mb-4">
+								Empowering young people to make informed decisions as they transition to adulthood. Our comprehensive SRHR programs help youth stay safe, protect themselves from sexually transmitted diseases, and improve their overall health.
+							</p>
+							<p className="text-gray-700">
+								In September 2024, GMC collaborated with a community-based organization in one of Kampala's slum areas to support 50 children aged 7-18 years, creating a cycle of empowerment where knowledge is shared among peers.
+							</p>
+						</div>
+						<div className="bg-white bg-opacity-90 rounded-2xl shadow-lg p-8 flex flex-col justify-center">
+							<h3 className="text-2xl font-bold text-amber-600 mb-4">Education Support</h3>
+							<p className="text-gray-700 mb-4">
+								Bridging educational gaps through tutoring, scholarship programs, and access to learning resources
+								that help vulnerable children stay in school and succeed.
+							</p>
+							<p className="text-gray-700 mb-4">
+								We provide holistic support including school supplies, uniforms, and mentorship to ensure
+								children can focus on their education.
+							</p>
+							<p className="text-amber-600 pt-2 font-bold text-lg">
+								EDUCATION SOLUTION IS STARTING AT FROM $320 <span className="ml-2">→</span>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
 			{/* Mental Health & Wellbeing */}
 		<div ref={addToRefs} id="mental-health" className="bg-gradient-to-br from-indigo-50 to-purple-50 py-20 px-6 lg:px-12">
 			<div className="max-w-7xl mx-auto">
@@ -439,52 +415,6 @@ const Gmc = () => {
 			</div>
 		</div>
 
-			{/* Impact on Children and Youths in Vulnerable Communities */}
-			<div ref={addToRefs} className="relative bg-white py-20 px-6 lg:px-12">
-				<div className="absolute inset-0">
-					<img
-						src={Picture16}
-						alt="Education and Mentorship"
-						className="w-full h-full object-cover rounded-2xl"
-						style={{ filter: 'brightness(0.35)' }}
-					/>
-					<div className="absolute inset-0 bg-white/60 rounded-2xl"></div>
-				</div>
-				<div className="relative max-w-6xl mx-auto z-10 py-10 px-2 md:px-6 lg:px-8">
-					<h2 className="text-5xl font-bold text-amber-200 mb-8 text-center">
-						Youth SRHR &amp; Menstrual Health Clubs
-					</h2>
-					<p className="text-lg text-black mb-8  text-center">
-						Creating safe spaces and opportunities for young minds to grow, learn, and thrive.
-					</p>
-					<div className="grid md:grid-cols-2 gap-8">
-						<div className="bg-white bg-opacity-90 rounded-2xl shadow-lg p-8 flex flex-col justify-center">
-							<h3 className="text-2xl font-bold text-indigo-600 mb-4">Sexual Reproductive Health Education</h3>
-							<p className="text-gray-700 mb-4">
-								Empowering young people to make informed decisions as they transition to adulthood. Our comprehensive SRHR programs help youth stay safe, protect themselves from sexually transmitted diseases, and improve their overall health.
-							</p>
-							<p className="text-gray-700">
-								In September 2024, GMC collaborated with a community-based organization in one of Kampala's slum areas to support 50 children aged 7-18 years, creating a cycle of empowerment where knowledge is shared among peers.
-							</p>
-						</div>
-						<div className="bg-white bg-opacity-90 rounded-2xl shadow-lg p-8 flex flex-col justify-center">
-							<h3 className="text-2xl font-bold text-amber-600 mb-4">Education Support</h3>
-							<p className="text-gray-700 mb-4">
-								Bridging educational gaps through tutoring, scholarship programs, and access to learning resources
-								that help vulnerable children stay in school and succeed.
-							</p>
-							<p className="text-gray-700 mb-4">
-								We provide holistic support including school supplies, uniforms, and mentorship to ensure
-								children can focus on their education.
-							</p>
-							<p className="text-amber-600 pt-2 font-bold text-lg">
-								EDUCATION SOLUTION IS STARTING AT FROM $320 <span className="ml-2">→</span>
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-
 			{/* Entrepreneurship and Economic Empowerment */}
 			<div ref={addToRefs} id="leadership" className="bg-gradient-to-br from-amber-50 to-gray-50 py-20 px-6 lg:px-12">
 				<div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
@@ -513,6 +443,76 @@ const Gmc = () => {
 							src={Women}
 							alt="Entrepreneurship"
 							className="w-full h-[500px] object-cover rounded-2xl shadow-lg"
+						/>
+					</div>
+				</div>
+			</div>
+
+			{/* Train-the-Trainer Programs */}
+			<div ref={addToRefs} id="training" className="bg-white py-20 px-6 lg:px-12">
+				<h2 className="text-5xl md:text-5xl text-center font-bold text-purple-600 mb-8">
+					Train-the-Trainer Programs
+				</h2>
+				<div className="grid md:grid-cols-2 gap-16 items-center">
+					<div>
+						<p className="text-lg text-gray-700 leading-relaxed mb-6">
+							Launched in <b>2024</b>, the GMC initiative began with the <b>first cohort of GMC founders</b> (five committed partners)
+							who underwent a <b>two-month mentorship program</b> focused on leadership and public management.
+						</p>
+						<p className="text-lg text-gray-700 leading-relaxed mb-6">
+							These pioneers, inspired by <b>AUNUA’s</b> expertise played a vital role in mastering the program, analyzing and modifying it to fit its purpose
+							and therefore replicating it by sharing their knowledge with a <b>second cohort of 12 partners</b>.
+							Over two months, these partners participated in <b>hybrid mentorship sessions</b>, blending virtual and in-person training to prepare them to become
+							catalysts for change. 
+						</p>
+						<p className="text-lg text-gray-700 leading-relaxed mb-8">
+							They graduated in May 2024, fully equipped to spread the program’s positive impact throughout their communities.
+						</p>
+					</div>
+					
+					<div className="bg-gradient-to-br from-amber-50 to-purple-50 p-8 rounded-2xl">
+						<h3 className="text-2xl font-bold text-indigo-600 mb-6">Self-Multiplication Model</h3>
+						<ul className="space-y-4">
+							<li className="flex items-start gap-3">
+								<span className="text-amber-600 text-xl">•</span>
+								<span className="text-gray-700">First cohort of 5 founders trained in leadership and public management</span>
+							</li>
+							<li className="flex items-start gap-3">
+								<span className="text-amber-600 text-xl">•</span>
+								<span className="text-gray-700">Founders replicated training with second cohort of 12 partners</span>
+							</li>
+							<li className="flex items-start gap-3">
+								<span className="text-amber-600 text-xl">•</span>
+								<span className="text-gray-700">Hybrid mentorship sessions: virtual and in-person training</span>
+							</li>
+							<li className="flex items-start gap-3">
+								<span className="text-amber-600 text-xl">•</span>
+								<span className="text-gray-700">May 2024 graduation with community impact tracking</span>
+							</li>
+							<li className="flex items-start gap-3">
+								<span className="text-amber-600 text-xl">•</span>
+								<span className="text-gray-700">Six-month follow-up for sustained impact and support</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div className="max-w-7xl mx-auto grid md:grid-row-2 gap-16 items-center pt-12">
+					{/* Static Image Grid Below Carousel */}
+					<div className="grid md:grid-cols-3 gap-6 mb-8">
+						<img
+							src={Picture20}
+							alt="Impact 1"
+							className="w-full h-[280px] object-cover rounded-2xl hover:scale-105 transition-transform duration-300"
+						/>
+						<img
+							src={Picture22}
+							alt="Impact 2"
+							className="w-full h-[280px] object-cover rounded-2xl hover:scale-105 transition-transform duration-300"
+						/>
+						<img
+							src={Picture21}
+							alt="Impact 3"
+							className="w-full h-[280px] object-cover rounded-2xl hover:scale-105 transition-transform duration-300"
 						/>
 					</div>
 				</div>
@@ -582,7 +582,7 @@ const Gmc = () => {
 			</div>
 
 			{/* REACH OUT */}
-			<div ref={addToRefs} className="bg-white py-20 px-6 lg:px-12">
+			<div ref={addToRefs} id="training" className="bg-white py-20 px-6 lg:px-12">
 				<div className="max-w-4xl mx-auto text-center">
 					<h2 className="text-5xl md:text-6xl font-bold text-indigo-600 mb-8">
 						REACH OUT
