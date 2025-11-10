@@ -65,6 +65,7 @@ const Donations = () => {
 
 	const [errors, setErrors] = useState({})
 	const [submitted, setSubmitted] = useState(false)
+	const [paymentModal, setPaymentModal] = useState(null)
 	const sectionsRef = useRef([])
 
 	// GSAP Scroll Animations
@@ -256,6 +257,18 @@ const Donations = () => {
 								</div>
 							)}
 						</div>
+
+						{/* Payment Options Section */}
+						<div className="mt-8 p-6 bg-gradient-to-br from-purple-50 to-amber-50 rounded-xl border-2 border-purple-200 shadow-lg text-center">
+							<h4 className="text-xl md:text-2xl font-bold text-purple-700 mb-4">Choose a Payment Method</h4>
+							<div className="flex flex-wrap justify-center gap-4 mb-4">
+								<button type="button" onClick={() => setPaymentModal('card')} className="px-6 py-3 rounded-xl bg-purple-600 text-white font-semibold shadow-md hover:bg-purple-700 transition-all">Credit Card</button>
+								<button type="button" onClick={() => setPaymentModal('paypal')} className="px-6 py-3 rounded-xl bg-blue-500 text-white font-semibold shadow-md hover:bg-blue-600 transition-all">PayPal</button>
+								<button type="button" onClick={() => setPaymentModal('mobile')} className="px-6 py-3 rounded-xl bg-green-500 text-white font-semibold shadow-md hover:bg-green-600 transition-all">Mobile Money</button>
+								<button type="button" onClick={() => setPaymentModal('bank')} className="px-6 py-3 rounded-xl bg-gray-600 text-white font-semibold shadow-md hover:bg-gray-700 transition-all">Bank Transfer</button>
+							</div>
+							<p className="text-base text-gray-700">Select your preferred payment option above to complete your donation. For questions, <Link to="/contact" className="text-purple-600 font-bold hover:underline">contact us</Link>.</p>
+						</div>
 					</div>
 
 					{/* donor form and notes */}
@@ -309,41 +322,80 @@ const Donations = () => {
 
 						<div className="mt-16 md:mt-20 bg-gradient-to-br from-purple-50 to-amber-50 rounded-2xl p-6 md:p-8 border-2 border-purple-200 shadow-lg">
 							<h4 className="text-xl md:text-2xl font-bold text-purple-700 mb-4">Impact of Your Gift</h4>
-							<ul className="space-y-3">
-								<li className="flex items-start gap-3">
-									<div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-md">
+							<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+								<div className="flex flex-col items-center text-center bg-white rounded-xl p-6 shadow-md">
+									<div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mb-4">
 										<DollarSign className="w-6 h-6 text-white" />
 									</div>
-									<div>
-										<strong className="text-lg text-purple-600">$25</strong>
-										<p className="text-base text-gray-700">Supplies & SIM/data for one participant</p>
-									</div>
-								</li>
-								<li className="flex items-start gap-3">
-									<div className="w-12 h-12 bg-gradient-to-br from-amber-500 to-amber-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-md">
+									<strong className="text-lg text-purple-600 mb-2">$25</strong>
+									<p className="text-base text-gray-700">Supplies & SIM/data for one participant</p>
+								</div>
+								<div className="flex flex-col items-center text-center bg-white rounded-xl p-6 shadow-md">
+									<div className="w-12 h-12 bg-gradient-to-br from-amber-500 to-amber-600 rounded-xl flex items-center justify-center mb-4">
 										<GraduationCap className="w-6 h-6 text-white" />
 									</div>
-									<div>
-										<strong className="text-lg text-purple-600">$100</strong>
-										<p className="text-base text-gray-700">Scholarship for training and a starter kit</p>
-									</div>
-								</li>
-								<li className="flex items-start gap-3">
-									<div className="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-md">
+									<strong className="text-lg text-purple-600 mb-2">$100</strong>
+									<p className="text-base text-gray-700">Scholarship for training and a starter kit</p>
+								</div>
+								<div className="flex flex-col items-center text-center bg-white rounded-xl p-6 shadow-md">
+									<div className="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center mb-4">
 										<Users className="w-6 h-6 text-white" />
 									</div>
-									<div>
-										<strong className="text-lg text-purple-600">$1,000</strong>
-										<p className="text-base text-gray-700">Support for a mini-cohort (training days + materials)</p>
-									</div>
-								</li>
-							</ul>
+									<strong className="text-lg text-purple-600 mb-2">$1,000</strong>
+									<p className="text-base text-gray-700">Support for a mini-cohort (training days + materials)</p>
+								</div>
+							</div>
 							<div className="mt-6 p-4 bg-white rounded-xl border border-purple-200">
 								<p className="text-base text-gray-700">Prefer to donate in another currency or offline? <Link to="/contact" className="text-purple-600 font-bold hover:underline">Contact us</Link> and we'll help you.</p>
 							</div>
+
 						</div>
 					</div>
 				</div>
+
+			{/* Payment Modal */}
+			{paymentModal && (
+				<div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+					<div className="bg-white rounded-xl shadow-2xl p-8 max-w-md w-full mx-4 relative">
+						<button onClick={() => setPaymentModal(null)} className="absolute top-3 right-3 text-gray-400 hover:text-gray-700 text-2xl">&times;</button>
+						<h3 className="text-2xl font-bold text-purple-700 mb-4">
+							{paymentModal === 'card' && 'Credit Card Payment'}
+							{paymentModal === 'paypal' && 'PayPal Payment'}
+							{paymentModal === 'mobile' && 'Mobile Money Payment'}
+							{paymentModal === 'bank' && 'Bank Transfer Payment'}
+						</h3>
+						<div className="text-center">
+							{paymentModal === 'card' && (
+								<div>
+									<p className="text-gray-600 mb-4">You will be redirected to our secure payment processor to complete your donation.</p>
+									<button className="bg-purple-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-purple-700 transition-all">Continue to Payment</button>
+								</div>
+							)}
+							{paymentModal === 'paypal' && (
+								<div>
+									<p className="text-gray-600 mb-4">You will be redirected to PayPal to complete your donation securely.</p>
+									<button className="bg-blue-500 text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-600 transition-all">Continue with PayPal</button>
+								</div>
+							)}
+							{paymentModal === 'mobile' && (
+								<div>
+									<p className="text-gray-600 mb-4">Choose your mobile money provider:</p>
+									<div className="space-y-2">
+										<button className="w-full bg-green-500 text-white px-6 py-3 rounded-xl font-semibold hover:bg-green-600 transition-all">MTN Mobile Money</button>
+										<button className="w-full bg-red-500 text-white px-6 py-3 rounded-xl font-semibold hover:bg-red-600 transition-all">Airtel Money</button>
+									</div>
+								</div>
+							)}
+							{paymentModal === 'bank' && (
+								<div>
+									<p className="text-gray-600 mb-4">Bank transfer details will be provided after confirmation.</p>
+									<button className="bg-gray-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-gray-700 transition-all">Get Transfer Details</button>
+								</div>
+							)}
+						</div>
+					</div>
+				</div>
+			)}
 		</section>
 	)
 }
